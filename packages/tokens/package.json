@@ -1,6 +1,6 @@
 {
   "name": "@codeforward/tokens",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Design tokens for Codeward UI — colors, typography, spacing",
   "license": "MIT",
   "author": "Vitor Medina",
@@ -25,7 +25,9 @@
     "node": ">=20"
   },
   "private": false,
-  "sideEffects": ["./dist/tokens.css"],
+  "sideEffects": [
+    "./dist/tokens.css"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -37,7 +39,9 @@
     },
     "./styles": "./dist/tokens.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
