@@ -52,7 +52,13 @@ export const AccordionTrigger = forwardRef<
         className="shrink-0 transition-transform duration-200"
         style={{ color: "var(--muted-foreground)" }}
       >
-        <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M4 6l4 4 4-4"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>

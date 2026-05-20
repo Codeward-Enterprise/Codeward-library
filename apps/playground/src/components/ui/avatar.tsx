@@ -1,5 +1,5 @@
-import { type HTMLAttributes, type ReactNode, forwardRef, useState } from "react";
 import { type VariantProps, cva } from "class-variance-authority";
+import { type HTMLAttributes, type ReactNode, forwardRef, useState } from "react";
 
 const avatarVariants = cva(
   [
@@ -41,13 +41,15 @@ function pickColor(seed: string): [string, string] {
 
 function getInitials(alt: string, fallback?: string): string {
   if (fallback) return fallback.slice(0, 2).toUpperCase();
-  return alt
-    .trim()
-    .split(/\s+/)
-    .map((w) => w[0] ?? "")
-    .join("")
-    .slice(0, 2)
-    .toUpperCase() || "?";
+  return (
+    alt
+      .trim()
+      .split(/\s+/)
+      .map((w) => w[0] ?? "")
+      .join("")
+      .slice(0, 2)
+      .toUpperCase() || "?"
+  );
 }
 
 export interface AvatarProps
@@ -70,7 +72,9 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       <span
         ref={ref}
         className={avatarVariants({ size, className })}
-        style={showImage ? undefined : { background: bg, color: fg, fontFamily: "var(--font-sans)" }}
+        style={
+          showImage ? undefined : { background: bg, color: fg, fontFamily: "var(--font-sans)" }
+        }
         {...props}
       >
         {showImage ? (
@@ -103,9 +107,14 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     const overflow = max ? items.length - max : 0;
 
     return (
-      <div ref={ref} className={["flex items-center", className].filter(Boolean).join(" ")} {...props}>
+      <div
+        ref={ref}
+        className={["flex items-center", className].filter(Boolean).join(" ")}
+        {...props}
+      >
         <div className="flex items-center -space-x-2">
           {visible.map((child, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: avatar slots are positional, order is stable
             <span key={i} className="ring-2 ring-white rounded-full inline-flex">
               {child}
             </span>

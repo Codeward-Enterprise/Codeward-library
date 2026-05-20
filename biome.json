@@ -41,7 +41,8 @@
       "**/.next/**",
       "**/storybook-static/**",
       "**/.changeset/**",
-      "**/coverage/**"
+      "**/coverage/**",
+      "**/.turbo/**"
     ]
   }
 }

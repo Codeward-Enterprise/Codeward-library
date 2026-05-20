@@ -5,10 +5,7 @@ import { listCommand } from "./commands/list";
 
 const program = new Command();
 
-program
-  .name("codeward")
-  .description("Codeward UI component CLI")
-  .version("0.0.0");
+program.name("codeward").description("Codeward UI component CLI").version("0.0.0");
 
 program
   .command("list")

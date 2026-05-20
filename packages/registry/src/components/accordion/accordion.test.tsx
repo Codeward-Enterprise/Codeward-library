@@ -17,7 +17,11 @@ const accordionItems = (
 
 describe("Accordion", () => {
   it("renders all triggers", () => {
-    render(<Accordion type="single" collapsible>{accordionItems}</Accordion>);
+    render(
+      <Accordion type="single" collapsible>
+        {accordionItems}
+      </Accordion>,
+    );
     expect(screen.getByText("Section 1")).toBeInTheDocument();
     expect(screen.getByText("Section 2")).toBeInTheDocument();
   });
@@ -32,7 +36,11 @@ describe("Accordion", () => {
   });
 
   it("all items are collapsed by default without defaultValue", () => {
-    render(<Accordion type="single" collapsible>{accordionItems}</Accordion>);
+    render(
+      <Accordion type="single" collapsible>
+        {accordionItems}
+      </Accordion>,
+    );
     const triggers = screen.getAllByRole("button");
     for (const trigger of triggers) {
       expect(trigger).toHaveAttribute("data-state", "closed");

@@ -41,10 +41,7 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: [
-          "bg-[var(--color-navy-800)] border-[var(--color-navy-600)]",
-          "text-[#F6F9FC]",
-        ],
+        default: ["bg-[var(--color-navy-800)] border-[var(--color-navy-600)]", "text-[#F6F9FC]"],
         success: [
           "bg-[var(--color-navy-800)] border-[var(--color-success-500)]/40",
           "text-[#F6F9FC]",
@@ -65,27 +62,72 @@ const toastVariants = cva(
 
 const iconMap = {
   default: (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ color: "#00D4B8", flexShrink: 0, marginTop: "1px" }}>
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+      style={{ color: "#00D4B8", flexShrink: 0, marginTop: "1px" }}
+    >
       <circle cx="9" cy="9" r="8" stroke="currentColor" strokeWidth="1.5" />
       <path d="M9 5v4M9 12.5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   ),
   success: (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ color: "#22C55E", flexShrink: 0, marginTop: "1px" }}>
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+      style={{ color: "#22C55E", flexShrink: 0, marginTop: "1px" }}
+    >
       <circle cx="9" cy="9" r="8" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M5.5 9l3 3 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M5.5 9l3 3 4-4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   ),
   warning: (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ color: "#F59E0B", flexShrink: 0, marginTop: "1px" }}>
-      <path d="M9 2L1.5 15h15L9 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+      style={{ color: "#F59E0B", flexShrink: 0, marginTop: "1px" }}
+    >
+      <path
+        d="M9 2L1.5 15h15L9 2z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       <path d="M9 8v3M9 12.5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   ),
   destructive: (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ color: "#EF4444", flexShrink: 0, marginTop: "1px" }}>
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+      style={{ color: "#EF4444", flexShrink: 0, marginTop: "1px" }}
+    >
       <circle cx="9" cy="9" r="8" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M11.5 6.5l-5 5M6.5 6.5l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path
+        d="M11.5 6.5l-5 5M6.5 6.5l5 5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   ),
 };
@@ -97,11 +139,7 @@ export interface ToastProps
 // ── Toast root ────────────────────────────────────────────────────────────────
 export const Toast = forwardRef<ElementRef<typeof ToastPrimitive.Root>, ToastProps>(
   ({ className, variant = "default", children, ...props }, ref) => (
-    <ToastPrimitive.Root
-      ref={ref}
-      className={toastVariants({ variant, className })}
-      {...props}
-    >
+    <ToastPrimitive.Root ref={ref} className={toastVariants({ variant, className })} {...props}>
       {iconMap[variant ?? "default"]}
       <div className="flex-1 min-w-0">{children}</div>
     </ToastPrimitive.Root>

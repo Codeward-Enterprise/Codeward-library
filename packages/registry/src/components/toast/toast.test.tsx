@@ -1,12 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import {
-  Toast,
-  ToastDescription,
-  ToastProvider,
-  ToastTitle,
-  ToastViewport,
-} from "./toast";
+import { Toast, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from "./toast";
 
 function renderToast(variant?: "default" | "success" | "warning" | "destructive") {
   return render(

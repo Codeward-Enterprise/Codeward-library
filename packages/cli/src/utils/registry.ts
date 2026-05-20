@@ -20,9 +20,6 @@ export function loadRegistry(): Registry {
   return JSON.parse(raw) as Registry;
 }
 
-export function findComponent(
-  registry: Registry,
-  name: string,
-): RegistryComponent | undefined {
+export function findComponent(registry: Registry, name: string): RegistryComponent | undefined {
   return registry.components.find((c) => c.name === name.toLowerCase());
 }

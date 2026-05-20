@@ -2,12 +2,35 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar, AvatarGroup } from "../components/ui/avatar";
 
 const Panel = ({ children, col = false }: { children: React.ReactNode; col?: boolean }) => (
-  <div style={{ background: "#252528", padding: "2.5rem", borderRadius: "12px", border: "1px solid #333337", display: "flex", flexDirection: col ? "column" : "row", flexWrap: "wrap", gap: "16px", alignItems: col ? "flex-start" : "center" }}>
+  <div
+    style={{
+      background: "#252528",
+      padding: "2.5rem",
+      borderRadius: "12px",
+      border: "1px solid #333337",
+      display: "flex",
+      flexDirection: col ? "column" : "row",
+      flexWrap: "wrap",
+      gap: "16px",
+      alignItems: col ? "flex-start" : "center",
+    }}
+  >
     {children}
   </div>
 );
 const Label = ({ text }: { text: string }) => (
-  <p style={{ color: "#5F6B7A", fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase" as const, margin: "0 0 4px", width: "100%" }}>
+  <p
+    style={{
+      color: "#5F6B7A",
+      fontFamily: "Inter, sans-serif",
+      fontSize: "11px",
+      fontWeight: 500,
+      letterSpacing: "0.08em",
+      textTransform: "uppercase" as const,
+      margin: "0 0 4px",
+      width: "100%",
+    }}
+  >
     {text}
   </p>
 );
@@ -20,7 +43,8 @@ const meta = {
     backgrounds: { default: "dark" },
     docs: {
       description: {
-        component: "Avatar com imagem e fallback automático para iniciais com cor determinística por nome. `AvatarGroup` empilha múltiplos avatares com overflow `+N`.",
+        component:
+          "Avatar com imagem e fallback automático para iniciais com cor determinística por nome. `AvatarGroup` empilha múltiplos avatares com overflow `+N`.",
       },
     },
   },
@@ -82,9 +106,34 @@ export const Group: Story = {
 export const InContext: Story = {
   name: "Exemplo — Membros do time",
   render: () => (
-    <div style={{ background: "#252528", padding: "2.5rem", borderRadius: "12px", border: "1px solid #333337", width: "380px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-        <p style={{ color: "#F6F9FC", fontFamily: "Inter, sans-serif", fontSize: "14px", fontWeight: 600, margin: 0 }}>Time do projeto</p>
+    <div
+      style={{
+        background: "#252528",
+        padding: "2.5rem",
+        borderRadius: "12px",
+        border: "1px solid #333337",
+        width: "380px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "20px",
+        }}
+      >
+        <p
+          style={{
+            color: "#F6F9FC",
+            fontFamily: "Inter, sans-serif",
+            fontSize: "14px",
+            fontWeight: 600,
+            margin: 0,
+          }}
+        >
+          Time do projeto
+        </p>
         <AvatarGroup max={3} size="sm">
           <Avatar alt="João Silva" />
           <Avatar alt="Maria Fernanda" />
@@ -102,8 +151,27 @@ export const InContext: Story = {
           <div key={member.name} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <Avatar alt={member.name} size="sm" />
             <div>
-              <p style={{ color: "#F6F9FC", fontFamily: "Inter, sans-serif", fontSize: "13px", fontWeight: 500, margin: 0 }}>{member.name}</p>
-              <p style={{ color: "#5F6B7A", fontFamily: "Inter, sans-serif", fontSize: "12px", margin: "1px 0 0" }}>{member.role}</p>
+              <p
+                style={{
+                  color: "#F6F9FC",
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  margin: 0,
+                }}
+              >
+                {member.name}
+              </p>
+              <p
+                style={{
+                  color: "#5F6B7A",
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "12px",
+                  margin: "1px 0 0",
+                }}
+              >
+                {member.role}
+              </p>
             </div>
           </div>
         ))}

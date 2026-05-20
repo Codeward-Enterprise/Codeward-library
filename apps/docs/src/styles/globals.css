@@ -65,7 +65,9 @@
   --font-family-mono: var(--font-mono);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 

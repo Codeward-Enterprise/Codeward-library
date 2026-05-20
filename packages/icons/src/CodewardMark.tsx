@@ -15,6 +15,7 @@ export function CodewardMark({ size = 32, className, ...props }: CodewardMarkPro
       height={size}
       viewBox="0 0 32 32"
       fill="none"
+      role="img"
       aria-label="Codeward"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
@@ -35,10 +36,7 @@ export function CodewardMark({ size = 32, className, ...props }: CodewardMarkPro
         transform="translate(0.75 0.75)"
       />
       {/* Layer 1 — front shield */}
-      <path
-        d="M16 2L4 7v9c0 6.627 5.373 12 12 12s12-5.373 12-12V7L16 2z"
-        fill="currentColor"
-      />
+      <path d="M16 2L4 7v9c0 6.627 5.373 12 12 12s12-5.373 12-12V7L16 2z" fill="currentColor" />
       {/* Brackets < > */}
       <path
         d="M13 12l-3 4 3 4M19 12l3 4-3 4"

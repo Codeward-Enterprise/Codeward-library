@@ -10,8 +10,19 @@ import {
   SelectValue,
 } from "../components/ui/select";
 
-const LightPanel = ({ children, width = "280px" }: { children: React.ReactNode; width?: string }) => (
-  <div style={{ background: "#FFFFFF", padding: "2.5rem", borderRadius: "12px", width, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
+const LightPanel = ({
+  children,
+  width = "280px",
+}: { children: React.ReactNode; width?: string }) => (
+  <div
+    style={{
+      background: "#FFFFFF",
+      padding: "2.5rem",
+      borderRadius: "12px",
+      width,
+      boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+    }}
+  >
     {children}
   </div>
 );
@@ -110,7 +121,17 @@ export const FormExample: Story = {
     <LightPanel width="360px">
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <label style={{ color: "var(--foreground)", fontFamily: "Inter, sans-serif", fontSize: "14px", fontWeight: 500 }}>Plano</label>
+          <label
+            htmlFor="select-plano"
+            style={{
+              color: "var(--foreground)",
+              fontFamily: "Inter, sans-serif",
+              fontSize: "14px",
+              fontWeight: 500,
+            }}
+          >
+            Plano
+          </label>
           <Select defaultValue="pro">
             <SelectTrigger>
               <SelectValue />
@@ -123,7 +144,17 @@ export const FormExample: Story = {
           </Select>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <label style={{ color: "var(--foreground)", fontFamily: "Inter, sans-serif", fontSize: "14px", fontWeight: 500 }}>Ciclo de cobrança</label>
+          <label
+            htmlFor="select-ciclo"
+            style={{
+              color: "var(--foreground)",
+              fontFamily: "Inter, sans-serif",
+              fontSize: "14px",
+              fontWeight: 500,
+            }}
+          >
+            Ciclo de cobrança
+          </label>
           <Select defaultValue="anual">
             <SelectTrigger>
               <SelectValue />

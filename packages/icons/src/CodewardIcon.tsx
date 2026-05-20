@@ -21,6 +21,7 @@ export function CodewardIcon({ size = 32, variant = "mark", ...props }: Codeward
       height={height}
       viewBox={`0 0 ${width} ${height}`}
       fill="none"
+      role="img"
       aria-label="Codeward"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

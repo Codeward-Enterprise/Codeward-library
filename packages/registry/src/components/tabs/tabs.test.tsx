@@ -24,10 +24,7 @@ describe("Tabs", () => {
 
   it("activates the default tab", () => {
     renderTabs();
-    expect(screen.getByRole("tab", { name: "Tab 1" })).toHaveAttribute(
-      "data-state",
-      "active",
-    );
+    expect(screen.getByRole("tab", { name: "Tab 1" })).toHaveAttribute("data-state", "active");
   });
 
   it("shows content of the active tab", () => {

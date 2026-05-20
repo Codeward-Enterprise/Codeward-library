@@ -64,7 +64,7 @@ function generateCss(): string {
   }
 
   vars.push("}");
-  return vars.join("\n") + "\n";
+  return `${vars.join("\n")}\n`;
 }
 
 export default defineConfig({

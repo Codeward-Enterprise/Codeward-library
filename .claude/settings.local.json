@@ -18,7 +18,10 @@
       "Bash(pnpm --filter docs test)",
       "Bash(pnpm --filter @codeward/registry test)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git restore *)",
+      "Bash(git push *)",
+      "Bash(pnpm exec *)"
     ]
   }
 }

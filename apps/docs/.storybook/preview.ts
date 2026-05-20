@@ -10,10 +10,10 @@ const preview: Preview = {
     backgrounds: {
       default: "dark",
       values: [
-        { name: "dark", value: "#111113" },        // neutro escuro — canvas padrão
-        { name: "navy", value: "#0A2540" },         // Navy 700 — superfície brand
-        { name: "navy-deep", value: "#04111F" },    // Navy 900
-        { name: "light", value: "#F6F9FC" },        // Light Surface
+        { name: "dark", value: "#111113" }, // neutro escuro — canvas padrão
+        { name: "navy", value: "#0A2540" }, // Navy 700 — superfície brand
+        { name: "navy-deep", value: "#04111F" }, // Navy 900
+        { name: "light", value: "#F6F9FC" }, // Light Surface
         { name: "white", value: "#FFFFFF" },
       ],
     },

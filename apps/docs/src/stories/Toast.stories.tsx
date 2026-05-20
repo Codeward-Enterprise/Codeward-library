@@ -1,10 +1,30 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Button } from "../components/ui/button";
-import { Toast, ToastAction, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from "../components/ui/toast";
+import {
+  Toast,
+  ToastAction,
+  ToastClose,
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+  ToastViewport,
+} from "../components/ui/toast";
 
 const Panel = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ background: "#252528", padding: "2.5rem", borderRadius: "12px", border: "1px solid #333337", display: "flex", gap: "12px", flexWrap: "wrap" as const, minHeight: "120px", alignItems: "center" }}>
+  <div
+    style={{
+      background: "#252528",
+      padding: "2.5rem",
+      borderRadius: "12px",
+      border: "1px solid #333337",
+      display: "flex",
+      gap: "12px",
+      flexWrap: "wrap" as const,
+      minHeight: "120px",
+      alignItems: "center",
+    }}
+  >
     {children}
   </div>
 );
@@ -17,7 +37,8 @@ const meta = {
     backgrounds: { default: "dark" },
     docs: {
       description: {
-        component: "Notificação temporária via Radix UI Toast. Surge no canto inferior direito, tem swipe-to-dismiss e é totalmente acessível. Envolva o app com `ToastProvider` e adicione `ToastViewport` no root.",
+        component:
+          "Notificação temporária via Radix UI Toast. Surge no canto inferior direito, tem swipe-to-dismiss e é totalmente acessível. Envolva o app com `ToastProvider` e adicione `ToastViewport` no root.",
       },
     },
   },
@@ -27,7 +48,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // ── Individual variant demos ───────────────────────────────────────────────────
-const ToastDemo = ({ variant, title, description, actionLabel }: {
+const ToastDemo = ({
+  variant,
+  title,
+  description,
+  actionLabel,
+}: {
   variant: "default" | "success" | "warning" | "destructive";
   title: string;
   description: string;
@@ -129,9 +155,19 @@ export const AllVariants: Story = {
   render: () => (
     <Panel>
       <ToastDemo variant="default" title="Info" description="Atualização disponível." />
-      <ToastDemo variant="success" title="Sucesso" description="Deploy concluído." actionLabel="Ver logs" />
+      <ToastDemo
+        variant="success"
+        title="Sucesso"
+        description="Deploy concluído."
+        actionLabel="Ver logs"
+      />
       <ToastDemo variant="warning" title="Alerta" description="Performance degradada." />
-      <ToastDemo variant="destructive" title="Erro" description="Falha no deploy." actionLabel="Ver detalhes" />
+      <ToastDemo
+        variant="destructive"
+        title="Erro"
+        description="Falha no deploy."
+        actionLabel="Ver detalhes"
+      />
     </Panel>
   ),
 };

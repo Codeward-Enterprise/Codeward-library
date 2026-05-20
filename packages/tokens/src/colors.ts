@@ -25,8 +25,8 @@ export const colors = {
     900: "#003330",
   },
   neutral: {
-    0: "#FFFFFF",   // Pure White
-    50: "#F6F9FC",  // Light Surface
+    0: "#FFFFFF", // Pure White
+    50: "#F6F9FC", // Light Surface
     200: "#E2E8F0",
     300: "#C8D3DD",
     400: "#98A7B5",

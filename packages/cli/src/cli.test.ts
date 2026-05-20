@@ -1,8 +1,8 @@
-import { join } from "node:path";
 import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { findComponent, type Registry } from "./utils/registry";
 import { detectOutputDir } from "./utils/paths";
+import { type Registry, findComponent } from "./utils/registry";
 
 const mockRegistry: Registry = {
   components: [

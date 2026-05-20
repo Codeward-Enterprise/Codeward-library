@@ -1,4 +1,3 @@
-import { CodewardMark } from "@codeforward/icons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,9 +11,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { CodewardMark } from "@codeforward/icons";
 
 // ─── Showcase section wrapper ─────────────────────────────────────────────────
-function Section({ title, description, children }: {
+function Section({
+  title,
+  description,
+  children,
+}: {
   title: string;
   description?: string;
   children: React.ReactNode;
@@ -22,11 +26,17 @@ function Section({ title, description, children }: {
   return (
     <section className="space-y-4">
       <div>
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}>
+        <h2
+          className="text-xl font-medium"
+          style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}
+        >
           {title}
         </h2>
         {description && (
-          <p className="mt-1 text-sm" style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-sans)" }}>
+          <p
+            className="mt-1 text-sm"
+            style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-sans)" }}
+          >
             {description}
           </p>
         )}
@@ -37,7 +47,7 @@ function Section({ title, description, children }: {
 }
 
 // ─── Token chip ───────────────────────────────────────────────────────────────
-function TokenChip({ label, hex, textDark = false }: { label: string; hex: string; textDark?: boolean }) {
+function TokenChip({ label, hex }: { label: string; hex: string }) {
   return (
     <div className="flex flex-col gap-1.5">
       <div
@@ -45,8 +55,18 @@ function TokenChip({ label, hex, textDark = false }: { label: string; hex: strin
         style={{ backgroundColor: hex, borderColor: "rgba(0,0,0,0.08)" }}
       />
       <div>
-        <p className="text-xs font-medium" style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}>{label}</p>
-        <p className="text-[11px] font-mono" style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}>{hex}</p>
+        <p
+          className="text-xs font-medium"
+          style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}
+        >
+          {label}
+        </p>
+        <p
+          className="text-[11px] font-mono"
+          style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
+        >
+          {hex}
+        </p>
       </div>
     </div>
   );
@@ -54,8 +74,10 @@ function TokenChip({ label, hex, textDark = false }: { label: string; hex: strin
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--muted)", fontFamily: "var(--font-sans)" }}>
-
+    <div
+      className="min-h-screen"
+      style={{ backgroundColor: "var(--muted)", fontFamily: "var(--font-sans)" }}
+    >
       {/* ── Navigation ─────────────────────────────────────────────────────── */}
       <nav
         className="sticky top-0 z-50 px-6 border-b"
@@ -100,7 +122,9 @@ export default function HomePage() {
             >
               Tokens
             </Button>
-            <Button variant="cta" size="sm">Instalar CLI</Button>
+            <Button variant="cta" size="sm">
+              Instalar CLI
+            </Button>
           </div>
         </div>
       </nav>
@@ -114,7 +138,9 @@ export default function HomePage() {
         }}
       >
         <div className="mx-auto max-w-6xl text-center space-y-6">
-          <Badge variant="cta" dot>Open for use in Codeward products</Badge>
+          <Badge variant="cta" dot>
+            Open for use in Codeward products
+          </Badge>
           <h1
             className="text-5xl font-medium tracking-tight"
             style={{ color: "#FFFFFF", fontFamily: "var(--font-sans)", lineHeight: "1.1" }}
@@ -127,10 +153,13 @@ export default function HomePage() {
             className="text-lg max-w-lg mx-auto"
             style={{ color: "var(--color-navy-300)", fontFamily: "var(--font-sans)" }}
           >
-            Tokens e utils como pacote npm. Componentes que você copia, controla e ajusta por projeto.
+            Tokens e utils como pacote npm. Componentes que você copia, controla e ajusta por
+            projeto.
           </p>
           <div className="flex items-center justify-center gap-3 pt-2">
-            <Button variant="cta" size="lg">Começar agora</Button>
+            <Button variant="cta" size="lg">
+              Começar agora
+            </Button>
             <Button
               variant="outline"
               size="lg"
@@ -144,31 +173,51 @@ export default function HomePage() {
 
       {/* ── Main content ───────────────────────────────────────────────────── */}
       <main className="mx-auto max-w-6xl px-6 py-14 space-y-16">
-
         {/* ── Color Palette ────────────────────────────────────────────────── */}
-        <Section title="Brand Palette" description="Navy 700 é o primário. Mint 500 é reservado para CTAs e destaques — regra dos 10%.">
+        <Section
+          title="Brand Palette"
+          description="Navy 700 é o primário. Mint 500 é reservado para CTAs e destaques — regra dos 10%."
+        >
           <div
             className="rounded-2xl p-6 border"
             style={{ backgroundColor: "white", borderColor: "var(--border)" }}
           >
             <div className="space-y-6">
               <div>
-                <p className="text-xs font-medium uppercase tracking-widest mb-3" style={{ color: "var(--muted-foreground)" }}>Navy</p>
+                <p
+                  className="text-xs font-medium uppercase tracking-widest mb-3"
+                  style={{ color: "var(--muted-foreground)" }}
+                >
+                  Navy
+                </p>
                 <div className="grid grid-cols-6 gap-3">
                   {[
-                    ["50", "#F0F4F9"], ["100", "#D9E2EE"], ["300", "#8DA8CC"],
-                    ["500", "#2D5685"], ["700", "#0A2540"], ["900", "#04111F"],
+                    ["50", "#F0F4F9"],
+                    ["100", "#D9E2EE"],
+                    ["300", "#8DA8CC"],
+                    ["500", "#2D5685"],
+                    ["700", "#0A2540"],
+                    ["900", "#04111F"],
                   ].map(([shade, hex]) => (
                     <TokenChip key={shade} label={`Navy ${shade}`} hex={hex as string} />
                   ))}
                 </div>
               </div>
               <div>
-                <p className="text-xs font-medium uppercase tracking-widest mb-3" style={{ color: "var(--muted-foreground)" }}>Mint</p>
+                <p
+                  className="text-xs font-medium uppercase tracking-widest mb-3"
+                  style={{ color: "var(--muted-foreground)" }}
+                >
+                  Mint
+                </p>
                 <div className="grid grid-cols-6 gap-3">
                   {[
-                    ["50", "#E6FCF8"], ["100", "#B3F5E9"], ["300", "#4DE7CC"],
-                    ["500", "#00D4B8"], ["600", "#00A593"], ["800", "#005048"],
+                    ["50", "#E6FCF8"],
+                    ["100", "#B3F5E9"],
+                    ["300", "#4DE7CC"],
+                    ["500", "#00D4B8"],
+                    ["600", "#00A593"],
+                    ["800", "#005048"],
                   ].map(([shade, hex]) => (
                     <TokenChip key={shade} label={`Mint ${shade}`} hex={hex as string} />
                   ))}
@@ -189,7 +238,10 @@ export default function HomePage() {
               className="rounded-2xl p-6 border space-y-5"
               style={{ backgroundColor: "white", borderColor: "var(--border)" }}
             >
-              <p className="text-xs font-medium uppercase tracking-widest" style={{ color: "var(--muted-foreground)" }}>
+              <p
+                className="text-xs font-medium uppercase tracking-widest"
+                style={{ color: "var(--muted-foreground)" }}
+              >
                 Variantes
               </p>
               <div className="flex flex-wrap gap-3">
@@ -202,7 +254,10 @@ export default function HomePage() {
                 <Button variant="link">Link</Button>
               </div>
               <div className="border-t pt-5" style={{ borderColor: "var(--border)" }}>
-                <p className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: "var(--muted-foreground)" }}>
+                <p
+                  className="text-xs font-medium uppercase tracking-widest mb-4"
+                  style={{ color: "var(--muted-foreground)" }}
+                >
                   Tamanhos
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
@@ -220,11 +275,15 @@ export default function HomePage() {
             <div
               className="rounded-2xl p-6 space-y-4"
               style={{
-                background: "linear-gradient(135deg, var(--primary) 0%, var(--color-navy-900) 100%)",
+                background:
+                  "linear-gradient(135deg, var(--primary) 0%, var(--color-navy-900) 100%)",
                 border: "1px solid var(--color-navy-600)",
               }}
             >
-              <p className="text-xs font-medium uppercase tracking-widest" style={{ color: "var(--color-navy-400)" }}>
+              <p
+                className="text-xs font-medium uppercase tracking-widest"
+                style={{ color: "var(--color-navy-400)" }}
+              >
                 Em fundo Navy
               </p>
               <div className="flex flex-wrap gap-3">
@@ -247,13 +306,21 @@ export default function HomePage() {
         </Section>
 
         {/* ── Badge ────────────────────────────────────────────────────────── */}
-        <Section title="Badge" description="Prop dot adiciona indicador circular de estado ao lado do texto.">
+        <Section
+          title="Badge"
+          description="Prop dot adiciona indicador circular de estado ao lado do texto."
+        >
           <div
             className="rounded-2xl p-6 border space-y-5"
             style={{ backgroundColor: "white", borderColor: "var(--border)" }}
           >
             <div>
-              <p className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: "var(--muted-foreground)" }}>Variantes</p>
+              <p
+                className="text-xs font-medium uppercase tracking-widest mb-4"
+                style={{ color: "var(--muted-foreground)" }}
+              >
+                Variantes
+              </p>
               <div className="flex flex-wrap gap-3">
                 <Badge variant="primary">Primary</Badge>
                 <Badge variant="cta">CTA</Badge>
@@ -266,28 +333,57 @@ export default function HomePage() {
               </div>
             </div>
             <div className="border-t pt-5" style={{ borderColor: "var(--border)" }}>
-              <p className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: "var(--muted-foreground)" }}>Com dot</p>
+              <p
+                className="text-xs font-medium uppercase tracking-widest mb-4"
+                style={{ color: "var(--muted-foreground)" }}
+              >
+                Com dot
+              </p>
               <div className="flex flex-wrap gap-3">
-                <Badge variant="success" dot>Online</Badge>
-                <Badge variant="warning" dot>Processando</Badge>
-                <Badge variant="destructive" dot>Erro crítico</Badge>
-                <Badge variant="secondary" dot>Offline</Badge>
-                <Badge variant="cta" dot>Novo</Badge>
+                <Badge variant="success" dot>
+                  Online
+                </Badge>
+                <Badge variant="warning" dot>
+                  Processando
+                </Badge>
+                <Badge variant="destructive" dot>
+                  Erro crítico
+                </Badge>
+                <Badge variant="secondary" dot>
+                  Offline
+                </Badge>
+                <Badge variant="cta" dot>
+                  Novo
+                </Badge>
               </div>
             </div>
             <div className="border-t pt-5" style={{ borderColor: "var(--border)" }}>
-              <p className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: "var(--muted-foreground)" }}>Tamanhos</p>
+              <p
+                className="text-xs font-medium uppercase tracking-widest mb-4"
+                style={{ color: "var(--muted-foreground)" }}
+              >
+                Tamanhos
+              </p>
               <div className="flex flex-wrap items-center gap-3">
-                <Badge size="sm" variant="primary">Small</Badge>
-                <Badge size="md" variant="primary">Medium</Badge>
-                <Badge size="lg" variant="primary">Large</Badge>
+                <Badge size="sm" variant="primary">
+                  Small
+                </Badge>
+                <Badge size="md" variant="primary">
+                  Medium
+                </Badge>
+                <Badge size="lg" variant="primary">
+                  Large
+                </Badge>
               </div>
             </div>
           </div>
         </Section>
 
         {/* ── Input ────────────────────────────────────────────────────────── */}
-        <Section title="Input" description="Label, hint e erro são props diretas. Focus ring em Mint 500.">
+        <Section
+          title="Input"
+          description="Label, hint e erro são props diretas. Focus ring em Mint 500."
+        >
           <div
             className="rounded-2xl p-6 border"
             style={{ backgroundColor: "white", borderColor: "var(--border)" }}
@@ -316,9 +412,11 @@ export default function HomePage() {
         </Section>
 
         {/* ── Card ─────────────────────────────────────────────────────────── */}
-        <Section title="Card" description="CardHighlight usa Navy 700 — para seções de destaque, métricas e CTAs (regra 60%).">
+        <Section
+          title="Card"
+          description="CardHighlight usa Navy 700 — para seções de destaque, métricas e CTAs (regra 60%)."
+        >
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
             {/* Standard card */}
             <Card>
               <CardHeader>
@@ -332,8 +430,12 @@ export default function HomePage() {
               </CardContent>
               <CardDivider />
               <CardFooter>
-                <Button size="sm" variant="primary">Ver sprint</Button>
-                <Button size="sm" variant="ghost">Dispensar</Button>
+                <Button size="sm" variant="primary">
+                  Ver sprint
+                </Button>
+                <Button size="sm" variant="ghost">
+                  Dispensar
+                </Button>
               </CardFooter>
             </Card>
 
@@ -349,21 +451,27 @@ export default function HomePage() {
                 </h2>
               </CardHeader>
               <CardContent>
-                <Badge variant="success" dot>+12,4% este mês</Badge>
+                <Badge variant="success" dot>
+                  +12,4% este mês
+                </Badge>
                 <p className="mt-3 text-sm" style={{ color: "var(--muted-foreground)" }}>
                   4 novos clientes em maio.
                 </p>
               </CardContent>
               <CardDivider />
               <CardFooter>
-                <Button size="sm" variant="outline">Ver relatório</Button>
+                <Button size="sm" variant="outline">
+                  Ver relatório
+                </Button>
               </CardFooter>
             </Card>
 
             {/* Highlight card (Navy) */}
             <CardHighlight>
               <CardHeader>
-                <Badge variant="cta" dot className="w-fit">Disponível agora</Badge>
+                <Badge variant="cta" dot className="w-fit">
+                  Disponível agora
+                </Badge>
                 <CardTitle style={{ color: "white" }}>MVP em 8 semanas</CardTitle>
                 <CardDescription style={{ color: "var(--color-navy-300)" }}>
                   Do discovery ao deploy em produção.
@@ -376,7 +484,11 @@ export default function HomePage() {
                     "Status diário. Sem surpresas",
                     "Construímos para escalar",
                   ].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm" style={{ color: "var(--color-navy-100)" }}>
+                    <li
+                      key={item}
+                      className="flex items-center gap-2 text-sm"
+                      style={{ color: "var(--color-navy-100)" }}
+                    >
                       <span style={{ color: "var(--cta)" }}>✓</span>
                       {item}
                     </li>
@@ -384,23 +496,49 @@ export default function HomePage() {
                 </ul>
               </CardContent>
               <CardFooter style={{ borderColor: "var(--color-navy-600)" }}>
-                <Button variant="cta" size="sm">Iniciar projeto</Button>
+                <Button variant="cta" size="sm">
+                  Iniciar projeto
+                </Button>
               </CardFooter>
             </CardHighlight>
           </div>
         </Section>
 
         {/* ── Typography ───────────────────────────────────────────────────── */}
-        <Section title="Typography" description="Inter 500 para títulos e CTAs. Inter 400 para body e descrições. JetBrains Mono para código.">
+        <Section
+          title="Typography"
+          description="Inter 500 para títulos e CTAs. Inter 400 para body e descrições. JetBrains Mono para código."
+        >
           <div
             className="rounded-2xl p-6 border space-y-6"
             style={{ backgroundColor: "white", borderColor: "var(--border)" }}
           >
             {[
-              { label: "Display — 48px / 500", size: "48px", weight: 500, text: "Construímos para escalar" },
-              { label: "Heading — 32px / 500", size: "32px", weight: 500, text: "Entregamos seu MVP" },
-              { label: "Body — 16px / 400", size: "16px", weight: 400, text: "Code review em todo PR. Status diário. Sem surpresas. Você sabe o que acontece." },
-              { label: "Caption — 14px / 400", size: "14px", weight: 400, text: "Atualizado há 2 horas · Sprint 14", opacity: 0.6 },
+              {
+                label: "Display — 48px / 500",
+                size: "48px",
+                weight: 500,
+                text: "Construímos para escalar",
+              },
+              {
+                label: "Heading — 32px / 500",
+                size: "32px",
+                weight: 500,
+                text: "Entregamos seu MVP",
+              },
+              {
+                label: "Body — 16px / 400",
+                size: "16px",
+                weight: 400,
+                text: "Code review em todo PR. Status diário. Sem surpresas. Você sabe o que acontece.",
+              },
+              {
+                label: "Caption — 14px / 400",
+                size: "14px",
+                weight: 400,
+                text: "Atualizado há 2 horas · Sprint 14",
+                opacity: 0.6,
+              },
             ].map(({ label, size, weight, text, opacity }) => (
               <div key={label} className="space-y-1">
                 <p
@@ -438,7 +576,6 @@ export default function HomePage() {
             </div>
           </div>
         </Section>
-
       </main>
 
       {/* ── Footer ─────────────────────────────────────────────────────────── */}

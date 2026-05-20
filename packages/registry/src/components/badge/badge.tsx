@@ -25,22 +25,11 @@ const badgeVariants = cva(
           "shadow-[0_0_8px_rgba(0,212,184,0.3)]",
         ],
         // ── Secondary — neutral fill ─────────────────────────────────────
-        secondary: [
-          "bg-[var(--muted)] text-[var(--muted-foreground)]",
-          "border-[var(--border)]",
-        ],
+        secondary: ["bg-[var(--muted)] text-[var(--muted-foreground)]", "border-[var(--border)]"],
         // ── Outline — transparent, neutral border ────────────────────────
-        outline: [
-          "bg-transparent",
-          "border-[var(--border)]",
-          "text-[var(--foreground)]",
-        ],
+        outline: ["bg-transparent", "border-[var(--border)]", "text-[var(--foreground)]"],
         // ── Outline Navy ─────────────────────────────────────────────────
-        "outline-primary": [
-          "bg-transparent",
-          "border-[var(--primary)]",
-          "text-[var(--primary)]",
-        ],
+        "outline-primary": ["bg-transparent", "border-[var(--primary)]", "text-[var(--primary)]"],
         // ── Status variants ──────────────────────────────────────────────
         success: [
           "bg-[var(--color-success-50)] text-[var(--color-success-700)]",

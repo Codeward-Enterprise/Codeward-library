@@ -23,10 +23,7 @@ export function formatPhone(value: string): string {
   return digits.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3").trim();
 }
 
-export function formatCurrency(
-  value: number,
-  options: Intl.NumberFormatOptions = {},
-): string {
+export function formatCurrency(value: number, options: Intl.NumberFormatOptions = {}): string {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -34,10 +31,7 @@ export function formatCurrency(
   }).format(value);
 }
 
-export function formatDate(
-  value: Date | string,
-  options: Intl.DateTimeFormatOptions = {},
-): string {
+export function formatDate(value: Date | string, options: Intl.DateTimeFormatOptions = {}): string {
   const date = typeof value === "string" ? new Date(value) : value;
   return new Intl.DateTimeFormat("pt-BR", {
     day: "2-digit",

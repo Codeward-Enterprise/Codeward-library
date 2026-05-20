@@ -98,11 +98,7 @@ CardDescription.displayName = "CardDescription";
 // ── CardContent ───────────────────────────────────────────────────────────────
 export const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={["px-6 py-5", className].filter(Boolean).join(" ")}
-      {...props}
-    />
+    <div ref={ref} className={["px-6 py-5", className].filter(Boolean).join(" ")} {...props} />
   ),
 );
 CardContent.displayName = "CardContent";

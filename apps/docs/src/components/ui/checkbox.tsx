@@ -1,5 +1,5 @@
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { type ComponentPropsWithoutRef, type ElementRef, type HTMLAttributes, forwardRef, useId } from "react";
+import { type ComponentPropsWithoutRef, type ElementRef, forwardRef, useId } from "react";
 
 export interface CheckboxProps extends ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {
   label?: string;
@@ -37,7 +37,13 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxPrimitive.Root>, Ch
         >
           <CheckboxPrimitive.Indicator className="flex items-center justify-center text-white">
             <svg width="11" height="8" viewBox="0 0 11 8" fill="none" aria-hidden="true">
-              <path d="M1 4l3 3 6-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M1 4l3 3 6-6"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Root>

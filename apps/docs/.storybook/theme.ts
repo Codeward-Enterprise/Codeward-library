@@ -10,9 +10,9 @@ export const codewardTheme = create({
   colorSecondary: "#00D4B8",
 
   // ── App chrome — neutral dark (não-navy para não conflitar com componentes) ──
-  appBg: "#0A0A0C",           // quase preto — sidebar bg
-  appContentBg: "#111113",    // conteúdo principal
-  appPreviewBg: "#111113",    // canvas do story
+  appBg: "#0A0A0C", // quase preto — sidebar bg
+  appContentBg: "#111113", // conteúdo principal
+  appPreviewBg: "#111113", // canvas do story
   appBorderColor: "#222226",
   appBorderRadius: 8,
 
