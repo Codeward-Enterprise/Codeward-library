@@ -1,4 +1,4 @@
-import { CodewardMark } from "@codeward/icons";
+import { CodewardMark } from "@codeforward/icons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -433,7 +433,7 @@ export default function HomePage() {
                 className="text-base"
                 style={{ fontFamily: "var(--font-mono)", color: "var(--foreground)" }}
               >
-                pnpm add @codeward/tokens @codeward/utils
+                pnpm add @codeforward/tokens @codeforward/utils
               </p>
             </div>
           </div>

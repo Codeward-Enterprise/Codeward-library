@@ -1,4 +1,4 @@
-# @codeward/icons
+# @codeforward/icons
 
 ## 1.0.0
 

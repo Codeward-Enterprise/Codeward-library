@@ -12,12 +12,12 @@ codeward-ui/
 │   ├── docs/            Storybook 8 (component documentation)
 │   └── playground/      Next.js 15 (live testing environment)
 ├── packages/
-│   ├── tokens/          @codeward/tokens — CSS vars + JS constants
-│   ├── utils/           @codeward/utils — cn(), BR formatters, validators
-│   ├── hooks/           @codeward/hooks — useDebounce, useMediaQuery, etc.
-│   ├── icons/           @codeward/icons — brand mark & wordmark SVG components
+│   ├── tokens/          @codeforward/tokens — CSS vars + JS constants
+│   ├── utils/           @codeforward/utils — cn(), BR formatters, validators
+│   ├── hooks/           @codeforward/hooks — useDebounce, useMediaQuery, etc.
+│   ├── icons/           @codeforward/icons — brand mark & wordmark SVG components
 │   ├── registry/        Component source (copied via CLI, not imported)
-│   └── cli/             @codeward/cli — `codeward add <component>`
+│   └── cli/             @codeforward/cli — `codeward add <component>`
 ```
 
 **Stack:** Next.js 15 · React 19 · TypeScript strict · Tailwind CSS · Radix UI · CVA · tsup · Biome · Vitest · Changesets
@@ -40,8 +40,8 @@ pnpm check          # lint + format
 ### Individual workspaces
 
 ```bash
-pnpm --filter @codeward/tokens build
-pnpm --filter @codeward/utils test
+pnpm --filter @codeforward/tokens build
+pnpm --filter @codeforward/utils test
 pnpm --filter playground dev
 pnpm --filter docs storybook
 ```
@@ -50,17 +50,12 @@ pnpm --filter docs storybook
 
 ### 1. Install the npm packages
 
-Configure GitHub Packages authentication in your `.npmrc`:
+Install directly from npm (no authentication needed):
 
-```
-@codeward:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
-```
 
-Then install:
 
 ```bash
-pnpm add @codeward/tokens @codeward/utils @codeward/hooks @codeward/icons @codeward/cli
+pnpm add @codeforward/tokens @codeforward/utils @codeforward/hooks @codeforward/icons @codeforward/cli
 ```
 
 ### 2. Import the design tokens
@@ -68,7 +63,7 @@ pnpm add @codeward/tokens @codeward/utils @codeward/hooks @codeward/icons @codew
 In your global CSS file:
 
 ```css
-@import "@codeward/tokens/styles";
+@import "@codeforward/tokens/styles";
 
 @theme {
   --color-primary: var(--primary);
@@ -105,7 +100,7 @@ They are plain TypeScript files you own and can modify freely.
 
 - Use [CVA](https://cva.style) for variants
 - Use Radix UI primitives for interactive elements
-- Use `cn()` from `@codeward/utils` for class merging
+- Use `cn()` from `@codeforward/utils` for class merging
 - All props must be TypeScript-typed with exported interfaces
 
 ## Publishing
@@ -128,8 +123,7 @@ Push to `main` → GitHub Actions runs `release.yml` → Changesets either:
 - Opens a "Version packages" PR (if there are pending changesets), or
 - Publishes to GitHub Packages (if the version PR is merged)
 
-Packages are scoped to `@codeward` and published to GitHub Packages (requires `GITHUB_TOKEN`
-with `packages: write` permission).
+Packages are scoped to `@codeforward` and published to npmjs.org (requires `NPM_TOKEN` secret in GitHub Actions).
 
 ## Brand Tokens
 

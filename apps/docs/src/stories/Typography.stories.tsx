@@ -61,7 +61,7 @@ const TypographyPage = () => (
       <p style={{ color: "#5F6B7A", fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
         <strong style={{ color: "#F6F9FC" }}>Inter</strong> para toda interface — corpo, labels, botões e headings.
         {" "}<strong style={{ color: "#F6F9FC" }}>JetBrains Mono</strong> para código, IDs, hashes e valores técnicos.
-        Importe via <code style={{ color: "#00D4B8", fontFamily: "JetBrains Mono, monospace", fontSize: "12px" }}>@codeward/tokens/styles</code>.
+        Importe via <code style={{ color: "#00D4B8", fontFamily: "JetBrains Mono, monospace", fontSize: "12px" }}>@codeforward/tokens/styles</code>.
       </p>
     </div>
 
@@ -87,7 +87,7 @@ const TypographyPage = () => (
     <Label text="Escala — JetBrains Mono (font-mono)" />
     <TypeRow size="text-xs" px="12px" weight="400" label="hash, version" sample="a7f3c9d · v2.4.1 · INV-2025-042" mono />
     <TypeRow size="text-sm" px="14px" weight="400" label="code, ids, values" sample="api-gateway · us-east-1 · 1m 12s" mono />
-    <TypeRow size="text-base" px="16px" weight="500" label="inline code" sample="pnpm add @codeward/tokens" mono />
+    <TypeRow size="text-base" px="16px" weight="500" label="inline code" sample="pnpm add @codeforward/tokens" mono />
     <TypeRow size="text-lg" px="18px" weight="400" label="code block" sample="const theme = createTheme(codewardTheme)" mono />
 
     <div style={{ height: "40px" }} />

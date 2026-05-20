@@ -1,5 +1,5 @@
 {
-  "name": "@codeward/utils",
+  "name": "@codeforward/utils",
   "version": "1.0.0",
   "description": "Shared utilities for Codeward UI — cn(), BR formatters, validators",
   "license": "MIT",

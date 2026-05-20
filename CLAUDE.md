@@ -12,19 +12,19 @@ pnpm test                                # run all tests (vitest)
 pnpm check                               # biome lint + format (auto-fix)
 
 # Filtered by workspace
-pnpm --filter @codeward/tokens build
-pnpm --filter @codeward/utils test
+pnpm --filter @codeforward/tokens build
+pnpm --filter @codeforward/utils test
 pnpm --filter playground dev             # Next.js dev server
 pnpm --filter docs storybook             # Storybook dev server
 
-# CLI smoke-test (after building @codeward/cli)
+# CLI smoke-test (after building @codeforward/cli)
 node packages/cli/dist/index.js list
 node packages/cli/dist/index.js add button
 ```
 
 ## Architecture
 
-**Hybrid model (shadcn-style):** `@codeward/tokens`, `@codeward/utils`, `@codeward/hooks`, `@codeward/icons`, `@codeward/cli` are published as npm packages to **npmjs.org** (public registry). Components in `packages/registry/` are distributed via `@codeward/cli` — the CLI copies `.tsx` source files directly into the consumer project. Consumers own and can modify the component files.
+**Hybrid model (shadcn-style):** `@codeforward/tokens`, `@codeforward/utils`, `@codeforward/hooks`, `@codeforward/icons`, `@codeforward/cli` are published as npm packages to **npmjs.org** (public registry). Components in `packages/registry/` are distributed via `@codeforward/cli` — the CLI copies `.tsx` source files directly into the consumer project. Consumers own and can modify the component files.
 
 **Monorepo:** pnpm workspaces + Turborepo. Build pipeline: `packages/*` must build before `apps/*` (enforced via `"dependsOn": ["^build"]` in `turbo.json`).
 
@@ -45,7 +45,7 @@ node packages/cli/dist/index.js add button
 - **Accent (Mint 500):** `#00D4B8` → CSS: `var(--accent)` / JS: `colors.mint[500]`
 - **Fonts:** Inter (sans, weights 400/500), JetBrains Mono (mono, weights 400/500)
 
-`tokens.css` is auto-generated during `@codeward/tokens build` from the JS token values defined in `src/`. Edit `src/colors.ts`, `src/typography.ts`, etc. — never edit `dist/tokens.css` directly.
+`tokens.css` is auto-generated during `@codeforward/tokens build` from the JS token values defined in `src/`. Edit `src/colors.ts`, `src/typography.ts`, etc. — never edit `dist/tokens.css` directly.
 
 ### Components (registry pattern)
 

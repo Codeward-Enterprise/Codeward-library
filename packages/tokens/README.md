@@ -1,13 +1,13 @@
-# @codeward/tokens
+# @codeforward/tokens
 
 Design tokens for Codeward UI — colors, typography, spacing, radii and shadows as JavaScript constants and CSS custom properties.
 
 ## Installation
 
 ```sh
-npm install @codeward/tokens
+npm install @codeforward/tokens
 # or
-pnpm add @codeward/tokens
+pnpm add @codeforward/tokens
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ pnpm add @codeward/tokens
 Import the generated stylesheet once at the root of your app:
 
 ```ts
-import "@codeward/tokens/styles";
+import "@codeforward/tokens/styles";
 ```
 
 This injects CSS custom properties such as `--primary`, `--accent`, `--font-sans`, `--spacing-4`, etc. that Tailwind utility classes reference.
@@ -25,7 +25,7 @@ This injects CSS custom properties such as `--primary`, `--accent`, `--font-sans
 ### JavaScript / TypeScript
 
 ```ts
-import { colors, semanticColors, typography, spacing, radii, shadows } from "@codeward/tokens";
+import { colors, semanticColors, typography, spacing, radii, shadows } from "@codeforward/tokens";
 
 console.log(colors.navy[700]);   // "#0A2540"
 console.log(colors.mint[500]);   // "#00D4B8"

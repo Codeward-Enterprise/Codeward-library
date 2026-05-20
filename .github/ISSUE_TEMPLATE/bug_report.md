@@ -28,7 +28,7 @@ assignees: ""
 
 - OS: 
 - Node version (`node -v`): 
-- Package version (`@codeward/...@x.y.z`): 
+- Package version (`@codeforward/...@x.y.z`): 
 - Framework: Next.js / Vite / other
 
 ## Minimal reproduction

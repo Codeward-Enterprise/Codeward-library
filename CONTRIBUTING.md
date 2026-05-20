@@ -27,8 +27,8 @@ pnpm check        # Biome lint + format (auto-fix)
 To work on a specific package:
 
 ```sh
-pnpm --filter @codeward/tokens dev
-pnpm --filter @codeward/utils test
+pnpm --filter @codeforward/tokens dev
+pnpm --filter @codeforward/utils test
 pnpm --filter docs storybook
 ```
 
@@ -39,7 +39,7 @@ pnpm --filter docs storybook
 3. Add tests at `packages/registry/src/components/<name>/<name>.test.tsx`
 4. Copy the file to `apps/docs/src/components/ui/` and add `apps/docs/src/stories/<Name>.stories.tsx`
 5. Copy the file to `apps/playground/src/components/ui/` and add a section to `apps/playground/src/app/page.tsx`
-6. Run `pnpm changeset` and select `@codeward/cli` as the changed package (the CLI bundles the registry)
+6. Run `pnpm changeset` and select `@codeforward/cli` as the changed package (the CLI bundles the registry)
 
 ## Component conventions
 

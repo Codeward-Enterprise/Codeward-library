@@ -1,4 +1,4 @@
-# @codeward/utils
+# @codeforward/utils
 
 ## 1.0.0
 

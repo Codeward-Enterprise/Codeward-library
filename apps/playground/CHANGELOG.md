@@ -9,7 +9,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @codeward/hooks@1.0.0
-  - @codeward/icons@1.0.0
-  - @codeward/tokens@1.0.0
-  - @codeward/utils@1.0.0
+  - @codeforward/hooks@1.0.0
+  - @codeforward/icons@1.0.0
+  - @codeforward/tokens@1.0.0
+  - @codeforward/utils@1.0.0

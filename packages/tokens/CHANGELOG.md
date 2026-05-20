@@ -1,4 +1,4 @@
-# @codeward/tokens
+# @codeforward/tokens
 
 ## 1.0.0
 

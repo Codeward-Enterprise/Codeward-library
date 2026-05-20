@@ -32,10 +32,10 @@ importers:
 
   apps/docs:
     dependencies:
-      '@codeward/tokens':
+      '@codeforward/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@codeward/utils':
+      '@codeforward/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       '@radix-ui/react-accordion':
@@ -117,16 +117,16 @@ importers:
 
   apps/playground:
     dependencies:
-      '@codeward/hooks':
+      '@codeforward/hooks':
         specifier: workspace:*
         version: link:../../packages/hooks
-      '@codeward/icons':
+      '@codeforward/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@codeward/tokens':
+      '@codeforward/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@codeward/utils':
+      '@codeforward/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       '@radix-ui/react-accordion':

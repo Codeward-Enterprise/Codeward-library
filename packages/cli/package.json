@@ -1,5 +1,5 @@
 {
-  "name": "@codeward/cli",
+  "name": "@codeforward/cli",
   "version": "1.0.0",
   "description": "CLI for adding Codeward UI components to your project",
   "license": "MIT",

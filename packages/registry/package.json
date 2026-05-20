@@ -1,5 +1,5 @@
 {
-  "name": "@codeward/registry",
+  "name": "@codeforward/registry",
   "version": "1.0.0",
   "description": "Component registry — source of truth for codeward add <component>",
   "private": true,

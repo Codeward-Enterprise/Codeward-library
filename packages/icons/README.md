@@ -1,13 +1,13 @@
-# @codeward/icons
+# @codeforward/icons
 
 Brand icons and marks for Codeward as React SVG components.
 
 ## Installation
 
 ```sh
-npm install @codeward/icons
+npm install @codeforward/icons
 # or
-pnpm add @codeward/icons
+pnpm add @codeforward/icons
 ```
 
 Requires React 19 as a peer dependency.
@@ -19,7 +19,7 @@ Requires React 19 as a peer dependency.
 The standalone logomark (the shield/mark without the wordmark).
 
 ```tsx
-import { CodewardMark } from "@codeward/icons";
+import { CodewardMark } from "@codeforward/icons";
 
 <CodewardMark size={32} />
 <CodewardMark size={24} className="text-primary" />
@@ -30,7 +30,7 @@ import { CodewardMark } from "@codeward/icons";
 The full brand icon, supports `mark` and `wordmark` variants.
 
 ```tsx
-import { CodewardIcon } from "@codeward/icons";
+import { CodewardIcon } from "@codeforward/icons";
 
 <CodewardIcon variant="mark" size={40} />
 <CodewardIcon variant="wordmark" size={120} />

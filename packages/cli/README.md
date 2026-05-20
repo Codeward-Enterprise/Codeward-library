@@ -1,4 +1,4 @@
-# @codeward/cli
+# @codeforward/cli
 
 The official CLI for adding Codeward UI components to your project.
 
@@ -10,13 +10,13 @@ No installation needed. Run with `npx` or `pnpm dlx`:
 
 ```sh
 npx codeward add button
-pnpm dlx @codeward/cli add button card input
+pnpm dlx @codeforward/cli add button card input
 ```
 
 Or install globally:
 
 ```sh
-npm install -g @codeward/cli
+npm install -g @codeforward/cli
 codeward add button
 ```
 
@@ -70,7 +70,7 @@ After adding a component, the CLI prints the peer dependencies you need to insta
 Your project needs:
 - React 19
 - Tailwind CSS 4
-- `@codeward/tokens` with the CSS variables imported
+- `@codeforward/tokens` with the CSS variables imported
 
 ## License
 

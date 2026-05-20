@@ -1,13 +1,13 @@
-# @codeward/utils
+# @codeforward/utils
 
 Shared utilities for Codeward UI — class merging, Brazilian formatters, and validators.
 
 ## Installation
 
 ```sh
-npm install @codeward/utils
+npm install @codeforward/utils
 # or
-pnpm add @codeward/utils
+pnpm add @codeforward/utils
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ pnpm add @codeward/utils
 Combines `clsx` and `tailwind-merge` to safely merge Tailwind classes without conflicts.
 
 ```ts
-import { cn } from "@codeward/utils";
+import { cn } from "@codeforward/utils";
 
 cn("px-4 py-2", "px-6");           // "py-2 px-6"
 cn("text-sm", condition && "font-bold");
@@ -26,7 +26,7 @@ cn("text-sm", condition && "font-bold");
 ### Brazilian formatters
 
 ```ts
-import { formatCPF, formatCNPJ, formatPhone, formatCurrency } from "@codeward/utils";
+import { formatCPF, formatCNPJ, formatPhone, formatCurrency } from "@codeforward/utils";
 
 formatCPF("12345678901");          // "123.456.789-01"
 formatCNPJ("12345678000195");      // "12.345.678/0001-95"
@@ -37,7 +37,7 @@ formatCurrency(1990.5);            // "R$ 1.990,50"
 ### Validators
 
 ```ts
-import { isCPF, isCNPJ, isEmail, isPhone, isCEP } from "@codeward/utils";
+import { isCPF, isCNPJ, isEmail, isPhone, isCEP } from "@codeforward/utils";
 
 isCPF("123.456.789-01");           // true | false
 isCNPJ("12.345.678/0001-95");      // true | false

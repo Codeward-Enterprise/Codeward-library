@@ -71,7 +71,7 @@ const ColorPage = () => (
       </div>
       <p style={{ color: "#5F6B7A", fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
         Regra <strong style={{ color: "#F6F9FC" }}>60-30-10</strong>: 60% Navy (estrutura), 30% Neutral (conteúdo), 10% Mint (destaques únicos).
-        Todas as cores são acessíveis via CSS custom properties — importe <code style={{ color: "#00D4B8", fontFamily: "JetBrains Mono, monospace", fontSize: "12px" }}>@codeward/tokens/styles</code>.
+        Todas as cores são acessíveis via CSS custom properties — importe <code style={{ color: "#00D4B8", fontFamily: "JetBrains Mono, monospace", fontSize: "12px" }}>@codeforward/tokens/styles</code>.
       </p>
     </div>
 

@@ -1,4 +1,4 @@
-# @codeward/cli
+# @codeforward/cli
 
 ## 1.0.0
 

@@ -1,4 +1,4 @@
-# @codeward/registry
+# @codeforward/registry
 
 ## 1.0.0
 

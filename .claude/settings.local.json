@@ -9,7 +9,16 @@
       "WebFetch(domain:www.npmjs.com)",
       "WebFetch(domain:rocketseat-education.github.io)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:cdn.jsdelivr.net)"
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "PowerShell(gh run *)",
+      "Bash(Get-ChildItem *)",
+      "Bash(git remote *)",
+      "Bash(pnpm test *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm --filter docs test)",
+      "Bash(pnpm --filter @codeward/registry test)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }
