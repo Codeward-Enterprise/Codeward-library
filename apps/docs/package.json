@@ -7,7 +7,7 @@
     "build-storybook": "storybook build",
     "build": "storybook build",
     "lint": "biome check .",
-    "test": "vitest run"
+    "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "@codeward/tokens": "workspace:*",

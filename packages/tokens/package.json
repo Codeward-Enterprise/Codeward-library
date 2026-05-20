@@ -2,7 +2,32 @@
   "name": "@codeward/tokens",
   "version": "1.0.0",
   "description": "Design tokens for Codeward UI — colors, typography, spacing",
+  "license": "MIT",
+  "author": "Vitor Medina",
+  "keywords": [
+    "design-tokens",
+    "css-variables",
+    "react",
+    "tailwindcss",
+    "design-system",
+    "codeward"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Codeward-Enterprise/Codeward-library.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://github.com/Codeward-Enterprise/Codeward-library#readme",
+  "bugs": {
+    "url": "https://github.com/Codeward-Enterprise/Codeward-library/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "private": false,
+  "sideEffects": [
+    "./dist/tokens.css"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

@@ -2,7 +2,30 @@
   "name": "@codeward/icons",
   "version": "1.0.0",
   "description": "Brand icons and marks for Codeward",
+  "license": "MIT",
+  "author": "Vitor Medina",
+  "keywords": [
+    "react",
+    "icons",
+    "svg",
+    "brand",
+    "design-system",
+    "codeward"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Codeward-Enterprise/Codeward-library.git",
+    "directory": "packages/icons"
+  },
+  "homepage": "https://github.com/Codeward-Enterprise/Codeward-library#readme",
+  "bugs": {
+    "url": "https://github.com/Codeward-Enterprise/Codeward-library/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "private": false,
+  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -25,12 +48,15 @@
   "peerDependencies": {
     "react": "^19.0.0"
   },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.1.4",
+    "happy-dom": "^20.9.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
-  },
-  "devDependencies": {
-    "@types/react": "^19.1.4",
-    "react": "^19.1.0"
   }
 }

@@ -24,7 +24,7 @@ node packages/cli/dist/index.js add button
 
 ## Architecture
 
-**Hybrid model (shadcn-style):** `@codeward/tokens`, `@codeward/utils`, `@codeward/hooks`, `@codeward/icons` are published as npm packages to GitHub Packages. Components in `packages/registry/` are distributed via `@codeward/cli` — the CLI copies `.tsx` source files directly into the consumer project. Consumers own and can modify the component files.
+**Hybrid model (shadcn-style):** `@codeward/tokens`, `@codeward/utils`, `@codeward/hooks`, `@codeward/icons`, `@codeward/cli` are published as npm packages to **npmjs.org** (public registry). Components in `packages/registry/` are distributed via `@codeward/cli` — the CLI copies `.tsx` source files directly into the consumer project. Consumers own and can modify the component files.
 
 **Monorepo:** pnpm workspaces + Turborepo. Build pipeline: `packages/*` must build before `apps/*` (enforced via `"dependsOn": ["^build"]` in `turbo.json`).
 
@@ -58,13 +58,15 @@ Each component in `packages/registry/src/components/<name>/` is self-contained. 
 To add a new component:
 1. Create `packages/registry/src/components/<name>/<name>.tsx`
 2. Add entry to `packages/registry/registry.json`
-3. Copy to `apps/docs/src/components/ui/` and add `apps/docs/src/stories/<Name>.stories.tsx`
-4. Copy to `apps/playground/src/components/ui/` and add a section to `apps/playground/src/app/page.tsx`
+3. Add tests at `packages/registry/src/components/<name>/<name>.test.tsx`
+4. Copy to `apps/docs/src/components/ui/` and add `apps/docs/src/stories/<Name>.stories.tsx`
+5. Copy to `apps/playground/src/components/ui/` and add a section to `apps/playground/src/app/page.tsx`
 
 ### CLI path resolution
 
-The CLI (`packages/cli/dist/index.js`) resolves `registry.json` relative to `__dirname`:
-`__dirname` (`.../packages/cli/dist`) → `../../registry` = `packages/registry/`
+The CLI (`packages/cli/dist/index.js`) resolves registry files relative to `__dirname`:
+`__dirname` = `.../packages/cli/dist/` → `dist/registry/` (bundled by `scripts/copy-registry.js` as a post-build step).
+`scripts/copy-registry.js` copies `packages/registry/registry.json` and component sources into `packages/cli/dist/registry/`, excluding test files.
 
 ### Testing setup
 
@@ -85,6 +87,7 @@ The spec calls for Storybook 9, but Storybook 9 was in alpha at setup time. Stor
 
 ### Publishing
 
-Packages publish to GitHub Packages (`https://npm.pkg.github.com`) under the `@codeward` scope.
-Authentication: `GITHUB_TOKEN` env var (set in CI via GitHub Actions; set locally in `.npmrc`).
-The `WARN` about `GITHUB_TOKEN` during local `pnpm install` is harmless — it only matters when publishing.
+Packages publish to **npmjs.org** (`https://registry.npmjs.org`) under the `@codeward` scope.
+Authentication: `NPM_TOKEN` secret in GitHub Actions (generate at npmjs.com → Access Tokens → Granular token with read/write for @codeward packages).
+CI release pipeline: push to `main` triggers the Changesets action, which either opens a "Version PR" or publishes if one is already merged.
+npm provenance is enabled via `NPM_CONFIG_PROVENANCE=true` in the release workflow — published packages show a verified provenance badge on npmjs.com.

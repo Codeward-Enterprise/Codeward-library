@@ -1,8 +1,32 @@
 {
   "name": "@codeward/cli",
   "version": "1.0.0",
-  "description": "CLI for adding Codeward components to your project",
+  "description": "CLI for adding Codeward UI components to your project",
+  "license": "MIT",
+  "author": "Vitor Medina",
+  "keywords": [
+    "cli",
+    "component-library",
+    "code-generator",
+    "react",
+    "tailwindcss",
+    "design-system",
+    "codeward"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Codeward-Enterprise/Codeward-library.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/Codeward-Enterprise/Codeward-library#readme",
+  "bugs": {
+    "url": "https://github.com/Codeward-Enterprise/Codeward-library/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "private": false,
+  "sideEffects": false,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {

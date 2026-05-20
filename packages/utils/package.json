@@ -2,7 +2,32 @@
   "name": "@codeward/utils",
   "version": "1.0.0",
   "description": "Shared utilities for Codeward UI — cn(), BR formatters, validators",
+  "license": "MIT",
+  "author": "Vitor Medina",
+  "keywords": [
+    "react",
+    "utilities",
+    "cn",
+    "tailwindcss",
+    "brazil",
+    "formatters",
+    "validators",
+    "codeward"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Codeward-Enterprise/Codeward-library.git",
+    "directory": "packages/utils"
+  },
+  "homepage": "https://github.com/Codeward-Enterprise/Codeward-library#readme",
+  "bugs": {
+    "url": "https://github.com/Codeward-Enterprise/Codeward-library/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "private": false,
+  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
