@@ -1,6 +1,6 @@
 {
   "name": "@codeward/hooks",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "React hooks for Codeward UI",
   "private": false,
   "main": "./dist/index.js",

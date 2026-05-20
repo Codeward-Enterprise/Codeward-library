@@ -1,6 +1,6 @@
 {
   "name": "@codeward/utils",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Shared utilities for Codeward UI — cn(), BR formatters, validators",
   "private": false,
   "main": "./dist/index.js",
@@ -13,7 +13,9 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

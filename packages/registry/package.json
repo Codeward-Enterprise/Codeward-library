@@ -1,6 +1,6 @@
 {
   "name": "@codeward/registry",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Component registry — source of truth for codeward add <component>",
   "private": true,
   "scripts": {
