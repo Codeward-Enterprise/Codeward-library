@@ -2,35 +2,37 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
 
-describe("Accordion", () => {
-  function renderAccordion(defaultValue?: string) {
-    return render(
-      <Accordion type="single" defaultValue={defaultValue} collapsible>
-        <AccordionItem value="item1">
-          <AccordionTrigger>Section 1</AccordionTrigger>
-          <AccordionContent>Content 1</AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item2">
-          <AccordionTrigger>Section 2</AccordionTrigger>
-          <AccordionContent>Content 2</AccordionContent>
-        </AccordionItem>
-      </Accordion>,
-    );
-  }
+const accordionItems = (
+  <>
+    <AccordionItem value="item1">
+      <AccordionTrigger>Section 1</AccordionTrigger>
+      <AccordionContent>Content 1</AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item2">
+      <AccordionTrigger>Section 2</AccordionTrigger>
+      <AccordionContent>Content 2</AccordionContent>
+    </AccordionItem>
+  </>
+);
 
+describe("Accordion", () => {
   it("renders all triggers", () => {
-    renderAccordion();
+    render(<Accordion type="single" collapsible>{accordionItems}</Accordion>);
     expect(screen.getByText("Section 1")).toBeInTheDocument();
     expect(screen.getByText("Section 2")).toBeInTheDocument();
   });
 
   it("shows content of the default open item", () => {
-    renderAccordion("item1");
+    render(
+      <Accordion type="single" defaultValue="item1" collapsible>
+        {accordionItems}
+      </Accordion>,
+    );
     expect(screen.getByText("Content 1")).toBeInTheDocument();
   });
 
   it("all items are collapsed by default without defaultValue", () => {
-    renderAccordion();
+    render(<Accordion type="single" collapsible>{accordionItems}</Accordion>);
     const triggers = screen.getAllByRole("button");
     for (const trigger of triggers) {
       expect(trigger).toHaveAttribute("data-state", "closed");
