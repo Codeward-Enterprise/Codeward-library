@@ -1,6 +1,6 @@
 {
   "name": "@codeforward/hooks",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "React hooks for Codeward UI",
   "license": "MIT",
   "author": "Vitor Medina",
@@ -38,7 +38,9 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
