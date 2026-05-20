@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item *)",
+      "PowerShell(Copy-Item *)",
+      "WebFetch(domain:codeward-brandbook.vercel.app)",
+      "WebFetch(domain:andromeda.rocketseat.dev)",
+      "WebSearch",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:rocketseat-education.github.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:cdn.jsdelivr.net)"
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "$schema": "./registry.schema.json",
+  "components": [
+    {
+      "name": "button",
+      "description": "Accessible button with 7 variants and 8 sizes",
+      "files": ["src/components/button/button.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "@radix-ui/react-slot": "^1.0.0",
+        "class-variance-authority": "^0.7.0"
+      }
+    },
+    {
+      "name": "input",
+      "description": "Form input with label, hint, error state, icon slot and dark variant",
+      "files": ["src/components/input/input.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0"
+      }
+    },
+    {
+      "name": "card",
+      "description": "Card container with header, content, footer, divider and highlight variant",
+      "files": ["src/components/card/card.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0"
+      }
+    },
+    {
+      "name": "badge",
+      "description": "Inline status badge with semantic variants and dot indicator",
+      "files": ["src/components/badge/badge.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "class-variance-authority": "^0.7.0"
+      }
+    },
+    {
+      "name": "dialog",
+      "description": "Accessible modal dialog via Radix UI with overlay, header, footer and close button",
+      "files": ["src/components/dialog/dialog.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "@radix-ui/react-dialog": "^1.0.0"
+      }
+    },
+    {
+      "name": "checkbox",
+      "description": "Accessible checkbox via Radix UI with optional label and description",
+      "files": ["src/components/checkbox/checkbox.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "@radix-ui/react-checkbox": "^1.0.0"
+      }
+    },
+    {
+      "name": "switch",
+      "description": "Toggle switch via Radix UI with Mint 500 active state",
+      "files": ["src/components/switch/switch.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "@radix-ui/react-switch": "^1.0.0"
+      }
+    },
+    {
+      "name": "tooltip",
+      "description": "Accessible tooltip via Radix UI with Navy 800 dark surface",
+      "files": ["src/components/tooltip/tooltip.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "@radix-ui/react-tooltip": "^1.0.0"
+      }
+    },
+    {
+      "name": "select",
+      "description": "Accessible select dropdown via Radix UI with groups, labels and separator",
+      "files": ["src/components/select/select.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "@radix-ui/react-select": "^2.0.0"
+      }
+    },
+    {
+      "name": "avatar",
+      "description": "Avatar with image, automatic initials fallback and AvatarGroup with overflow count",
+      "files": ["src/components/avatar/avatar.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "class-variance-authority": "^0.7.0"
+      }
+    },
+    {
+      "name": "tabs",
+      "description": "Accessible tab navigation via Radix UI with active indicator and badge support",
+      "files": ["src/components/tabs/tabs.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "@radix-ui/react-tabs": "^1.0.0"
+      }
+    },
+    {
+      "name": "accordion",
+      "description": "Collapsible sections via Radix UI with single or multiple open mode",
+      "files": ["src/components/accordion/accordion.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "@radix-ui/react-accordion": "^1.0.0"
+      }
+    },
+    {
+      "name": "table",
+      "description": "Semantic table with header, body, footer and caption for data listings",
+      "files": ["src/components/table/table.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0"
+      }
+    },
+    {
+      "name": "toast",
+      "description": "Temporary notification via Radix UI Toast with 4 semantic variants and swipe-to-dismiss",
+      "files": ["src/components/toast/toast.tsx"],
+      "dependencies": [],
+      "peerDependencies": {
+        "react": "^19.0.0",
+        "@radix-ui/react-toast": "^1.0.0",
+        "class-variance-authority": "^0.7.0"
+      }
+    }
+  ]
+}
