@@ -12,7 +12,7 @@
   "dependencies": {
     "@codeforward/hooks": "workspace:*",
     "@codeforward/icons": "workspace:*",
-    "@codeforward/tokens": "^2.0.0",
+    "@codeforward/tokens": "workspace:*",
     "@codeforward/utils": "workspace:*",
     "next": "^15.3.2",
     "react": "^19.1.0",

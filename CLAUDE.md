@@ -87,7 +87,7 @@ The spec calls for Storybook 9, but Storybook 9 was in alpha at setup time. Stor
 
 ### Publishing
 
-Packages publish to **npmjs.org** (`https://registry.npmjs.org`) under the `@codeward` scope.
-Authentication: `NPM_TOKEN` secret in GitHub Actions (generate at npmjs.com → Access Tokens → Granular token with read/write for @codeward packages).
+Packages publish to **npmjs.org** (`https://registry.npmjs.org`) under the `@codeforward` scope.
+Authentication: `NPM_TOKEN` secret in GitHub Actions (generate at npmjs.com → Access Tokens → Granular token with read/write for @codeforward packages).
 CI release pipeline: push to `main` triggers the Changesets action, which either opens a "Version PR" or publishes if one is already merged.
 npm provenance is enabled via `NPM_CONFIG_PROVENANCE=true` in the release workflow — published packages show a verified provenance badge on npmjs.com.
