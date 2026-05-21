@@ -37,10 +37,10 @@ export async function CodeBlock({ code, language = "tsx", filename }: CodeBlockP
           </span>
         </div>
       )}
-      <div className="relative" style={{ backgroundColor: "#0D1929" }}>
+      <div style={{ position: "relative", backgroundColor: "#0D1929" }}>
         <CopyButton code={code} />
         <div
-          className="overflow-x-auto text-sm [&_pre]:p-4 [&_pre]:pr-16 [&_pre]:m-0 [&_pre]:leading-relaxed [&_pre]:bg-transparent! [&_code]:bg-transparent!"
+          className="codeward-pre-wrap overflow-x-auto text-sm"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: shiki output is safe
           dangerouslySetInnerHTML={{ __html: html }}
         />

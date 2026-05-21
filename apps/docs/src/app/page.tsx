@@ -11,7 +11,7 @@ export default function Home() {
         className="border-b px-6 h-14 flex items-center justify-between sticky top-0 z-50"
         style={{
           borderColor: "var(--border)",
-          backgroundColor: "rgba(246,249,252,0.85)",
+          backgroundColor: "var(--home-header-bg)",
           backdropFilter: "blur(8px)",
         }}
       >
@@ -95,7 +95,7 @@ export default function Home() {
             className="inline-flex items-center gap-2 h-11 px-6 rounded-lg text-sm font-medium transition-all"
             style={{
               backgroundColor: "var(--primary)",
-              color: "white",
+              color: "var(--primary-foreground)",
               boxShadow: "0 1px 3px rgba(10,37,64,0.35)",
             }}
           >

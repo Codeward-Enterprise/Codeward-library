@@ -69,7 +69,7 @@ export default function GettingStartedPage() {
         <div className="flex items-center gap-3">
           <span
             className="flex items-center justify-center w-7 h-7 rounded-full text-sm font-medium shrink-0"
-            style={{ backgroundColor: "var(--primary)", color: "white" }}
+            style={{ backgroundColor: "var(--primary)", color: "var(--primary-foreground)" }}
           >
             1
           </span>
@@ -113,7 +113,7 @@ yarn add @codeforward/tokens @codeforward/utils @codeforward/hooks @codeforward/
         <div className="flex items-center gap-3">
           <span
             className="flex items-center justify-center w-7 h-7 rounded-full text-sm font-medium shrink-0"
-            style={{ backgroundColor: "var(--primary)", color: "white" }}
+            style={{ backgroundColor: "var(--primary)", color: "var(--primary-foreground)" }}
           >
             2
           </span>
@@ -172,7 +172,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="flex items-center gap-3">
           <span
             className="flex items-center justify-center w-7 h-7 rounded-full text-sm font-medium shrink-0"
-            style={{ backgroundColor: "var(--primary)", color: "white" }}
+            style={{ backgroundColor: "var(--primary)", color: "var(--primary-foreground)" }}
           >
             3
           </span>
@@ -201,7 +201,7 @@ codeward add button`}
         <div className="flex items-center gap-3">
           <span
             className="flex items-center justify-center w-7 h-7 rounded-full text-sm font-medium shrink-0"
-            style={{ backgroundColor: "var(--primary)", color: "white" }}
+            style={{ backgroundColor: "var(--primary)", color: "var(--primary-foreground)" }}
           >
             4
           </span>
@@ -242,7 +242,7 @@ Nenhuma dependência adicional necessária.`}
         <div className="flex items-center gap-3">
           <span
             className="flex items-center justify-center w-7 h-7 rounded-full text-sm font-medium shrink-0"
-            style={{ backgroundColor: "var(--primary)", color: "white" }}
+            style={{ backgroundColor: "var(--primary)", color: "var(--primary-foreground)" }}
           >
             5
           </span>

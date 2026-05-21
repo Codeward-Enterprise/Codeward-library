@@ -41,7 +41,7 @@ export function PropTable({ props }: PropTableProps) {
                 <code
                   className="text-xs px-1.5 py-0.5 rounded font-medium"
                   style={{
-                    backgroundColor: "var(--color-navy-50)",
+                    backgroundColor: "var(--code-badge-bg)",
                     color: "var(--primary)",
                     fontFamily: "var(--font-mono)",
                   }}

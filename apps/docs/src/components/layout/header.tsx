@@ -1,11 +1,12 @@
 import { CodewardMark } from "@codeforward/icons";
 import Link from "next/link";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Header() {
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 h-[57px] flex items-center px-6 border-b"
-      style={{ background: "var(--primary)", borderColor: "var(--color-navy-600)" }}
+      style={{ background: "var(--color-navy-700)", borderColor: "var(--color-navy-600)" }}
     >
       <div className="flex items-center gap-3 flex-1">
         <Link href="/docs/getting-started" className="flex items-center gap-2.5">
@@ -53,6 +54,7 @@ export function Header() {
         >
           GitHub
         </a>
+        <ThemeToggle />
       </nav>
     </header>
   );

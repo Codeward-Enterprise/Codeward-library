@@ -23,7 +23,7 @@ function ColorSwatch({
           {tag && (
             <span
               className="ml-1.5 text-[10px] px-1.5 py-0.5 rounded-full"
-              style={{ backgroundColor: "var(--cta)", color: "var(--primary)", fontWeight: 500 }}
+              style={{ backgroundColor: "var(--cta)", color: "var(--cta-foreground)", fontWeight: 500 }}
             >
               {tag}
             </span>
@@ -228,8 +228,9 @@ var(--ring)             /* Mint 500 (focus) */`}</code>
                   fontSize: size,
                   fontWeight: weight,
                   fontFamily: font === "mono" ? "var(--font-mono)" : "var(--font-sans)",
-                  color: `rgba(26,26,26,${opacity ?? 1})`,
+                  color: "var(--foreground)",
                   lineHeight: 1.3,
+                  ...(opacity !== undefined ? { opacity } : {}),
                 }}
               >
                 {text}

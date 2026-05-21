@@ -14,14 +14,14 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         "relative flex flex-col overflow-hidden rounded-2xl border",
         variant === "dark"
           ? "shadow-[0_2px_8px_rgba(0,0,0,0.2)]"
-          : "bg-white shadow-[0_1px_3px_rgba(10,37,64,0.06),0_4px_12px_rgba(10,37,64,0.04)]",
+          : "shadow-[0_1px_3px_rgba(10,37,64,0.06),0_4px_12px_rgba(10,37,64,0.04)]",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
       style={{
         borderColor: variant === "dark" ? "#333337" : "var(--border)",
-        background: variant === "dark" ? "#252528" : undefined,
+        background: variant === "dark" ? "#252528" : "var(--background)",
         ...style,
       }}
       {...props}

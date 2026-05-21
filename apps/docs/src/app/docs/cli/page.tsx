@@ -43,7 +43,7 @@ export default function CliPage() {
             <code
               className="text-sm font-medium px-2 py-1 rounded"
               style={{
-                backgroundColor: "var(--color-navy-50)",
+                backgroundColor: "var(--code-badge-bg)",
                 color: "var(--primary)",
                 fontFamily: "var(--font-mono)",
               }}

@@ -71,8 +71,8 @@ export function Sidebar() {
                       className="block rounded-md px-2 py-1.5 text-sm transition-colors"
                       style={{
                         fontFamily: "var(--font-sans)",
-                        color: active ? "var(--primary)" : "var(--foreground)",
-                        backgroundColor: active ? "var(--muted)" : "transparent",
+                        color: active ? "var(--nav-active)" : "var(--foreground)",
+                        backgroundColor: active ? "var(--nav-active-bg)" : "transparent",
                         fontWeight: active ? 500 : 400,
                       }}
                     >
