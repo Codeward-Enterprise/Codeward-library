@@ -1,7 +1,5 @@
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-export default defineConfig({
-  plugins: [tailwindcss(), react()],
-});
+// Storybook uses its own Vite instance configured via .storybook/main.ts viteFinal.
+// This file is kept for vitest compatibility only.
+export default defineConfig({});

@@ -1,6 +1,6 @@
 import type { Preview } from "@storybook/react";
 import { codewardTheme } from "./theme";
-import "../src/styles/globals.css";
+import "../src/app/globals.css";
 
 const preview: Preview = {
   parameters: {

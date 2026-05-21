@@ -105,7 +105,7 @@ CardContent.displayName = "CardContent";
 
 // ── CardFooter ────────────────────────────────────────────────────────────────
 export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+  ({ className, style, ...props }, ref) => (
     <div
       ref={ref}
       className={[
@@ -116,7 +116,7 @@ export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEleme
       ]
         .filter(Boolean)
         .join(" ")}
-      style={{ borderColor: "var(--border)", paddingTop: "1.25rem" }}
+      style={{ borderColor: "var(--border)", paddingTop: "1.25rem", ...style }}
       {...props}
     />
   ),
