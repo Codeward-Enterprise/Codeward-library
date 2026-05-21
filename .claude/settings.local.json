@@ -23,7 +23,26 @@
       "Bash(git push *)",
       "Bash(pnpm exec *)",
       "Bash(git pull *)",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "Bash(pnpm *)",
+      "Bash(Select-Object Name)",
+      "Bash(Select-String -Pattern \"failed|passed|error|ERR_\")",
+      "Bash(Select-Object -Last 40)",
+      "PowerShell(Get-ChildItem \"C:\\\\Codeward\\\\codeward-library\" | Where-Object {$_.PSIsContainer} | Select-Object -ExpandProperty Name)",
+      "PowerShell(git *)",
+      "PowerShell(pnpm *)",
+      "Bash(Select-Object Name, FullName)",
+      "Bash(xargs cat)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); deps={**d.get\\('dependencies',{}\\), **d.get\\('peerDependencies',{}\\)}; print\\(json.dumps\\(deps, indent=2\\)\\)\")",
+      "Bash(dir \"C:\\\\Codeward\\\\codeward-library\\\\apps\\\\docs\\\\node_modules\\\\@storybook\\\\builder-vite\")",
+      "Bash(dir \"C:\\\\Codeward\\\\codeward-library\\\\apps\\\\docs\\\\node_modules\\\\storybook\")",
+      "Bash(dir \"C:\\\\Codeward\\\\codeward-library\\\\apps\\\\docs\\\\node_modules\\\\storybook\\\\node_modules\")",
+      "Bash(python3 *)",
+      "Bash(dir \"C:\\\\Codeward\\\\codeward-library\\\\apps\\\\docs\\\\node_modules\\\\@storybook\\\\react-vite\\\\node_modules\")",
+      "Bash(dir \"C:\\\\Codeward\\\\codeward-library\\\\apps\\\\docs\\\\node_modules\\\\@storybook\")",
+      "Bash(node *)",
+      "Bash(Select-Object -Property Name, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)"
     ]
   }
 }
