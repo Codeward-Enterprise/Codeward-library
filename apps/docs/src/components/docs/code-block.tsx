@@ -1,6 +1,5 @@
-"use client";
-
-import { useState } from "react";
+import { codeToHtml } from "shiki";
+import { CopyButton } from "./copy-button";
 
 interface CodeBlockProps {
   code: string;
@@ -8,15 +7,11 @@ interface CodeBlockProps {
   filename?: string;
 }
 
-export function CodeBlock({ code, language = "tsx", filename }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false);
-
-  const copy = () => {
-    navigator.clipboard.writeText(code).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
+export async function CodeBlock({ code, language = "tsx", filename }: CodeBlockProps) {
+  const html = await codeToHtml(code, {
+    lang: language,
+    theme: "github-dark-dimmed",
+  });
 
   return (
     <div
@@ -43,25 +38,12 @@ export function CodeBlock({ code, language = "tsx", filename }: CodeBlockProps) 
         </div>
       )}
       <div className="relative" style={{ backgroundColor: "#0D1929" }}>
-        <button
-          type="button"
-          onClick={copy}
-          className="absolute top-3 right-3 text-xs px-2 py-1 rounded transition-all"
-          style={{
-            color: copied ? "var(--cta)" : "var(--color-navy-400)",
-            backgroundColor: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            fontFamily: "var(--font-mono)",
-          }}
-        >
-          {copied ? "copiado!" : "copiar"}
-        </button>
-        <pre
-          className="overflow-x-auto p-4 pr-16 text-sm leading-relaxed"
-          style={{ fontFamily: "var(--font-mono)", color: "#E2E8F0", margin: 0 }}
-        >
-          <code>{code}</code>
-        </pre>
+        <CopyButton code={code} />
+        <div
+          className="overflow-x-auto text-sm [&_pre]:p-4 [&_pre]:pr-16 [&_pre]:m-0 [&_pre]:leading-relaxed [&_pre]:bg-transparent! [&_code]:bg-transparent!"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: shiki output is safe
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       </div>
     </div>
   );

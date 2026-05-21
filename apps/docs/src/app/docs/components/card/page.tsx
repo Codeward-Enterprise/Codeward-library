@@ -14,28 +14,28 @@ import {
 } from "@/components/ui/card";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Card" };
+export const metadata: Metadata = { title: "Card — Codeward UI" };
 
-const props = [
+const cardProps = [
   {
     name: "variant",
     type: '"default" | "dark"',
     default: '"default"',
-    description: "Variante visual — dark usa fundo Navy",
+    description:
+      "default: fundo branco com sombra sutil. dark: fundo escuro (#252528) para superfícies escuras.",
   },
-  { name: "className", type: "string", description: "Classes CSS adicionais" },
-  { name: "children", type: "ReactNode", required: true, description: "Conteúdo do card" },
+  { name: "className", type: "string", default: "—", description: "Classes CSS adicionais." },
 ];
 
 export default function CardPage() {
   return (
     <div className="space-y-10" style={{ fontFamily: "var(--font-sans)" }}>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <p
           className="text-sm"
           style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
         >
-          codeward add card
+          npx @codeforward/cli add card
         </p>
         <h1 className="text-4xl font-medium tracking-tight" style={{ color: "var(--foreground)" }}>
           Card
@@ -45,8 +45,8 @@ export default function CardPage() {
           <code style={{ fontFamily: "var(--font-mono)" }}>CardHeader</code>,{" "}
           <code style={{ fontFamily: "var(--font-mono)" }}>CardContent</code>,{" "}
           <code style={{ fontFamily: "var(--font-mono)" }}>CardFooter</code> e{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>CardHighlight</code> (Navy 700 — 60% da
-          regra de cor).
+          <code style={{ fontFamily: "var(--font-mono)" }}>CardHighlight</code> — fundo Navy 700
+          para seções de destaque.
         </p>
       </div>
 
@@ -56,14 +56,14 @@ export default function CardPage() {
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
           Instalação
         </h2>
-        <CodeBlock language="bash" code="codeward add card" />
+        <CodeBlock language="bash" code="npx @codeforward/cli add card" />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
-          Exemplos
+          Uso básico
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <Card>
@@ -147,7 +147,7 @@ export default function CardPage() {
           language="tsx"
           code={`import {
   Card, CardHeader, CardTitle, CardDescription,
-  CardContent, CardDivider, CardFooter, CardHighlight
+  CardContent, CardDivider, CardFooter,
 } from "@/components/ui/card";
 
 <Card>
@@ -156,23 +156,60 @@ export default function CardPage() {
     <CardDescription>Sprint 14 · 12 a 18 de maio</CardDescription>
   </CardHeader>
   <CardContent>
-    <p>12 PRs merged.</p>
+    <p>12 PRs merged. Deploy confirmado para sexta às 18h.</p>
   </CardContent>
   <CardDivider />
   <CardFooter>
     <Button size="sm">Ver sprint</Button>
+    <Button size="sm" variant="ghost">Dispensar</Button>
   </CardFooter>
-</Card>
+</Card>`}
+        />
+      </section>
 
-{/* Variante highlight (Navy 700) */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          CardHighlight
+        </h2>
+        <p style={{ color: "var(--muted-foreground)" }}>
+          Use <code style={{ fontFamily: "var(--font-mono)" }}>CardHighlight</code> para seções de
+          destaque com fundo Navy 700 — seguindo a regra dos 60% da paleta de marca.
+        </p>
+        <CodeBlock
+          language="tsx"
+          code={`import { CardHighlight, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+
 <CardHighlight>
   <CardHeader>
+    <Badge variant="cta" dot className="w-fit">Disponível agora</Badge>
     <CardTitle style={{ color: "white" }}>MVP em 8 semanas</CardTitle>
+    <CardDescription style={{ color: "var(--color-navy-300)" }}>
+      Do discovery ao deploy.
+    </CardDescription>
   </CardHeader>
-  <CardFooter>
+  <CardContent>
+    {/* conteúdo com cor text-white ou navy-100 */}
+  </CardContent>
+  <CardFooter style={{ borderColor: "var(--color-navy-600)" }}>
     <Button variant="cta">Iniciar projeto</Button>
   </CardFooter>
 </CardHighlight>`}
+        />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Variante dark
+        </h2>
+        <CodeBlock
+          language="tsx"
+          code={`{/* Superfície escura (#252528) — para uso em fundos escuros */}
+<Card variant="dark">
+  <CardHeader>
+    <CardTitle style={{ color: "white" }}>Título</CardTitle>
+  </CardHeader>
+  <CardContent>...</CardContent>
+</Card>`}
         />
       </section>
 
@@ -180,19 +217,74 @@ export default function CardPage() {
 
       <section className="space-y-4">
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Sub-componentes
+        </h2>
+        <div className="overflow-x-auto rounded-xl border" style={{ borderColor: "var(--border)" }}>
+          <table className="w-full text-sm">
+            <thead>
+              <tr style={{ backgroundColor: "var(--muted)" }}>
+                {["Componente", "Descrição"].map((h) => (
+                  <th
+                    key={h}
+                    className="text-left px-4 py-3 text-xs font-medium uppercase tracking-widest border-b"
+                    style={{ color: "var(--muted-foreground)", borderColor: "var(--border)" }}
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["Card", "Root — container principal com borda, sombra e border-radius."],
+                ["CardHighlight", "Variante Navy 700 para seções de destaque — sem prop variant."],
+                [
+                  "CardHeader",
+                  "Área de título com padding px-6 pt-6. Adicione CardTitle e CardDescription aqui.",
+                ],
+                ["CardTitle", "Título do card — renderizado como <h3>, tamanho base/medium."],
+                ["CardDescription", "Descrição do card — tamanho sm, cor muted-foreground."],
+                ["CardContent", "Área principal do conteúdo — padding px-6 py-5."],
+                ["CardDivider", "Separador horizontal entre seções — margem mx-6."],
+                ["CardFooter", "Área de ações — padding px-6 pb-6, border-top automático."],
+              ].map(([comp, desc], i) => (
+                <tr
+                  key={comp as string}
+                  style={{ backgroundColor: i % 2 === 0 ? "var(--background)" : "var(--muted)" }}
+                >
+                  <td className="px-4 py-3 border-b" style={{ borderColor: "var(--border)" }}>
+                    <code
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.8rem",
+                        color: "var(--primary)",
+                      }}
+                    >
+                      {comp}
+                    </code>
+                  </td>
+                  <td
+                    className="px-4 py-3 border-b"
+                    style={{ borderColor: "var(--border)", color: "var(--foreground)" }}
+                  >
+                    {desc}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
           Props — Card
         </h2>
-        <PropTable props={props} />
+        <PropTable props={cardProps} />
         <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
-          <code style={{ fontFamily: "var(--font-mono)" }}>CardHighlight</code>,{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>CardHeader</code>,{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>CardContent</code>,{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>CardFooter</code>,{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>CardTitle</code>,{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>CardDescription</code> e{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>CardDivider</code> aceitam{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>className</code> e todos os atributos
-          HTML nativos.
+          Todos os sub-componentes aceitam{" "}
+          <code style={{ fontFamily: "var(--font-mono)" }}>className</code> e os atributos HTML
+          nativos do elemento que renderizam.
         </p>
       </section>
     </div>

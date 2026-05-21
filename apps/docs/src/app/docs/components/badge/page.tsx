@@ -4,43 +4,41 @@ import { PropTable } from "@/components/docs/prop-table";
 import { Badge } from "@/components/ui/badge";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Badge" };
+export const metadata: Metadata = { title: "Badge — Codeward UI" };
 
-const props = [
+const badgeProps = [
   {
     name: "variant",
     type: '"primary" | "cta" | "secondary" | "outline" | "outline-primary" | "success" | "warning" | "destructive"',
-    default: '"secondary"',
-    description: "Estilo visual do badge",
+    default: '"primary"',
+    description: "Estilo visual do badge.",
   },
-  { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Tamanho do badge" },
+  { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Tamanho do badge." },
   {
     name: "dot",
     type: "boolean",
     default: "false",
-    description: "Exibe um indicador circular de status ao lado do texto",
+    description: "Exibe um ponto colorido antes do texto — ideal para status em tempo real.",
   },
-  { name: "className", type: "string", description: "Classes CSS adicionais" },
-  { name: "children", type: "ReactNode", required: true, description: "Conteúdo do badge" },
+  { name: "className", type: "string", default: "—", description: "Classes CSS adicionais." },
 ];
 
 export default function BadgePage() {
   return (
     <div className="space-y-10" style={{ fontFamily: "var(--font-sans)" }}>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <p
           className="text-sm"
           style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
         >
-          codeward add badge
+          npx @codeforward/cli add badge
         </p>
         <h1 className="text-4xl font-medium tracking-tight" style={{ color: "var(--foreground)" }}>
           Badge
         </h1>
         <p className="text-lg" style={{ color: "var(--muted-foreground)" }}>
-          Pequena etiqueta para status, categorias e notificações. A prop{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>dot</code> adiciona um indicador circular
-          animado ideal para status em tempo real.
+          Etiqueta compacta para status, categorias e contadores. 8 variantes de cor, 3 tamanhos e
+          suporte a ponto indicador — componente puramente visual sem estado interno.
         </p>
       </div>
 
@@ -50,8 +48,7 @@ export default function BadgePage() {
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
           Instalação
         </h2>
-        <CodeBlock language="bash" code="codeward add badge" />
-        <CodeBlock language="bash" code="npm install class-variance-authority" />
+        <CodeBlock language="bash" code="npx @codeforward/cli add badge" />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} />
@@ -72,7 +69,9 @@ export default function BadgePage() {
         </Preview>
         <CodeBlock
           language="tsx"
-          code={`<Badge variant="primary">Primary</Badge>
+          code={`import { Badge } from "@/components/ui/badge";
+
+<Badge variant="primary">Primary</Badge>
 <Badge variant="cta">CTA</Badge>
 <Badge variant="secondary">Secondary</Badge>
 <Badge variant="outline">Outline</Badge>
@@ -85,8 +84,12 @@ export default function BadgePage() {
 
       <section className="space-y-4">
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
-          Com dot (status)
+          Com ponto indicador
         </h2>
+        <p style={{ color: "var(--muted-foreground)" }}>
+          Use <code style={{ fontFamily: "var(--font-mono)" }}>dot</code> para adicionar um
+          indicador de status antes do texto.
+        </p>
         <Preview>
           <Badge variant="success" dot>
             Online
@@ -137,13 +140,37 @@ export default function BadgePage() {
         />
       </section>
 
+      <section className="space-y-4">
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Casos de uso comuns
+        </h2>
+        <CodeBlock
+          language="tsx"
+          code={`{/* Status de pedido */}
+<Badge variant="warning" dot>Em processamento</Badge>
+<Badge variant="success" dot>Entregue</Badge>
+<Badge variant="destructive" dot>Cancelado</Badge>
+
+{/* Tags de categoria */}
+<Badge variant="outline-primary">React</Badge>
+<Badge variant="outline-primary">TypeScript</Badge>
+
+{/* Contador de notificações */}
+<Badge variant="cta" size="sm">14</Badge>
+
+{/* Lançamento */}
+<Badge variant="cta" size="sm">Novo</Badge>
+<Badge variant="secondary" size="sm">Beta</Badge>`}
+        />
+      </section>
+
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
           Props
         </h2>
-        <PropTable props={props} />
+        <PropTable props={badgeProps} />
       </section>
     </div>
   );

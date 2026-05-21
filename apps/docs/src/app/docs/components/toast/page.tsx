@@ -1,47 +1,56 @@
 import { CodeBlock } from "@/components/docs/code-block";
+import { Preview } from "@/components/docs/preview";
 import { PropTable } from "@/components/docs/prop-table";
+import { ToastDemo } from "@/components/docs/toast-demo";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Toast" };
+export const metadata: Metadata = { title: "Toast — Codeward UI" };
 
-const props = [
+const toastProps = [
   {
     name: "variant",
     type: '"default" | "success" | "warning" | "destructive"',
     default: '"default"',
-    description: "Estilo visual — cada variante exibe um ícone automático",
+    description: "Estilo visual — cada variante exibe um ícone automático.",
   },
-  { name: "open", type: "boolean", description: "Estado controlado de visibilidade" },
+  {
+    name: "open",
+    type: "boolean",
+    default: "true",
+    description: "Controla a visibilidade do toast.",
+  },
   {
     name: "onOpenChange",
     type: "(open: boolean) => void",
-    description: "Callback ao mudar visibilidade",
+    default: "—",
+    description: "Callback chamado ao fechar o toast.",
   },
   {
     name: "duration",
     type: "number",
     default: "5000",
-    description: "Tempo em ms antes de fechar automaticamente",
+    description: "Tempo em ms antes do fechamento automático. Use 0 para desabilitar.",
   },
 ];
 
 export default function ToastPage() {
   return (
     <div className="space-y-10" style={{ fontFamily: "var(--font-sans)" }}>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <p
           className="text-sm"
           style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
         >
-          codeward add toast
+          npx @codeforward/cli add toast
         </p>
         <h1 className="text-4xl font-medium tracking-tight" style={{ color: "var(--foreground)" }}>
           Toast
         </h1>
         <p className="text-lg" style={{ color: "var(--muted-foreground)" }}>
-          Notificação não-bloqueante com fechamento automático e suporte a swipe. Cada variante
-          exibe um ícone automático. Construído sobre{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>@radix-ui/react-toast</code>.
+          Notificação não-bloqueante com fechamento automático. 4 variantes com ícone automático.
+          Renderizado via <code style={{ fontFamily: "var(--font-mono)" }}>createPortal</code> no{" "}
+          <code style={{ fontFamily: "var(--font-mono)" }}>document.body</code> — sempre acima de
+          outros elementos, incluindo modais.
         </p>
       </div>
 
@@ -51,53 +60,36 @@ export default function ToastPage() {
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
           Instalação
         </h2>
-        <CodeBlock language="bash" code="codeward add toast" />
-        <CodeBlock
-          language="bash"
-          code="npm install @radix-ui/react-toast class-variance-authority"
-        />
+        <CodeBlock language="bash" code="npx @codeforward/cli add toast" />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
-          Setup
+          Demo interativo
         </h2>
         <p style={{ color: "var(--muted-foreground)" }}>
-          Adicione o <code style={{ fontFamily: "var(--font-mono)" }}>ToastProvider</code> e{" "}
-          <code style={{ fontFamily: "var(--font-mono)" }}>ToastViewport</code> no layout raiz:
+          Clique para ver cada variante. O toast fecha automaticamente após 3 segundos.
         </p>
-        <CodeBlock
-          filename="src/app/layout.tsx"
-          language="tsx"
-          code={`import { ToastProvider, ToastViewport } from "@/components/ui/toast";
-
-export default function RootLayout({ children }) {
-  return (
-    <html>
-      <body>
-        <ToastProvider>
-          {children}
-          <ToastViewport />
-        </ToastProvider>
-      </body>
-    </html>
-  );
-}`}
-        />
+        <Preview>
+          <ToastDemo />
+        </Preview>
       </section>
 
       <section className="space-y-4">
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
-          Uso
+          Uso básico
         </h2>
         <CodeBlock
           language="tsx"
-          code={`import { Toast, ToastTitle, ToastDescription } from "@/components/ui/toast";
-import { useState } from "react";
+          code={`"use client";
 
-function MyComponent() {
+import { useState } from "react";
+import { Toast, ToastTitle, ToastDescription } from "@/components/ui/toast";
+import { Button } from "@/components/ui/button";
+
+export function SaveButton() {
   const [open, setOpen] = useState(false);
 
   return (
@@ -122,7 +114,7 @@ function MyComponent() {
           <table className="w-full text-sm">
             <thead>
               <tr style={{ backgroundColor: "var(--muted)" }}>
-                {["Variante", "Ícone", "Uso"].map((h) => (
+                {["Variante", "Ícone", "Uso recomendado"].map((h) => (
                   <th
                     key={h}
                     className="text-left px-4 py-3 text-xs font-medium uppercase tracking-widest border-b"
@@ -135,10 +127,18 @@ function MyComponent() {
             </thead>
             <tbody>
               {[
-                ["default", "ℹ info (Mint)", "Informações gerais"],
-                ["success", "✓ checkmark (verde)", "Ação concluída com sucesso"],
-                ["warning", "⚠ alerta (laranja)", "Atenção necessária"],
-                ["destructive", "✕ erro (vermelho)", "Erro ou falha crítica"],
+                ["default", "Info (Mint)", "Informações gerais e notificações neutras"],
+                [
+                  "success",
+                  "Checkmark (verde)",
+                  "Ação concluída com sucesso — salvo, enviado, etc.",
+                ],
+                [
+                  "warning",
+                  "Triângulo (laranja)",
+                  "Atenção necessária — ação irreversível, prazo próximo",
+                ],
+                ["destructive", "X (vermelho)", "Erro ou falha — operação não concluída"],
               ].map(([variant, icon, use], i) => (
                 <tr
                   key={variant as string}
@@ -166,15 +166,145 @@ function MyComponent() {
             </tbody>
           </table>
         </div>
+        <CodeBlock
+          language="tsx"
+          code={`<Toast variant="default" open={open} onOpenChange={setOpen}>
+  <ToastTitle>Novo comentário</ToastTitle>
+  <ToastDescription>Alice comentou no seu PR.</ToastDescription>
+</Toast>
+
+<Toast variant="success" open={open} onOpenChange={setOpen}>
+  <ToastTitle>Deploy concluído</ToastTitle>
+  <ToastDescription>v2.4.1 em produção.</ToastDescription>
+</Toast>
+
+<Toast variant="warning" open={open} onOpenChange={setOpen}>
+  <ToastTitle>Armazenamento quase cheio</ToastTitle>
+  <ToastDescription>Você usou 90% do espaço disponível.</ToastDescription>
+</Toast>
+
+<Toast variant="destructive" open={open} onOpenChange={setOpen}>
+  <ToastTitle>Falha no pagamento</ToastTitle>
+  <ToastDescription>Verifique os dados do cartão.</ToastDescription>
+</Toast>`}
+        />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Com botão de ação
+        </h2>
+        <CodeBlock
+          language="tsx"
+          code={`import { Toast, ToastTitle, ToastDescription, ToastAction } from "@/components/ui/toast";
+
+<Toast variant="default" open={open} onOpenChange={setOpen}>
+  <ToastTitle>Arquivo excluído</ToastTitle>
+  <ToastDescription>relatorio-q2.pdf foi removido.</ToastDescription>
+  <ToastAction onClick={handleUndo}>Desfazer</ToastAction>
+</Toast>`}
+        />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Duração personalizada
+        </h2>
+        <CodeBlock
+          language="tsx"
+          code={`{/* Fecha em 8 segundos */}
+<Toast open={open} onOpenChange={setOpen} duration={8000}>
+  ...
+</Toast>
+
+{/* Não fecha automaticamente */}
+<Toast open={open} onOpenChange={setOpen} duration={0}>
+  ...
+</Toast>`}
+        />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Sub-componentes
+        </h2>
+        <div className="overflow-x-auto rounded-xl border" style={{ borderColor: "var(--border)" }}>
+          <table className="w-full text-sm">
+            <thead>
+              <tr style={{ backgroundColor: "var(--muted)" }}>
+                {["Componente", "Descrição"].map((h) => (
+                  <th
+                    key={h}
+                    className="text-left px-4 py-3 text-xs font-medium uppercase tracking-widest border-b"
+                    style={{ color: "var(--muted-foreground)", borderColor: "var(--border)" }}
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["Toast", "Root — gerencia visibilidade, timer de auto-fechamento e portal."],
+                ["ToastTitle", "Título em negrito — text-sm font-semibold."],
+                ["ToastDescription", "Descrição auxiliar — text-xs, opacity-80."],
+                ["ToastAction", "Botão de ação dentro do toast — bordado, estilo ghost."],
+                ["ToastClose", "Botão X de fechar — incluído automaticamente no Toast root."],
+                ["ToastProvider", "No-op mantido para compatibilidade de API."],
+                [
+                  "ToastViewport",
+                  "Container de posicionamento alternativo — não necessário com portal.",
+                ],
+              ].map(([comp, desc], i) => (
+                <tr
+                  key={comp as string}
+                  style={{ backgroundColor: i % 2 === 0 ? "var(--background)" : "var(--muted)" }}
+                >
+                  <td className="px-4 py-3 border-b" style={{ borderColor: "var(--border)" }}>
+                    <code
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.8rem",
+                        color: "var(--primary)",
+                      }}
+                    >
+                      {comp}
+                    </code>
+                  </td>
+                  <td
+                    className="px-4 py-3 border-b"
+                    style={{ borderColor: "var(--border)", color: "var(--foreground)" }}
+                  >
+                    {desc}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
           Props — Toast
         </h2>
-        <PropTable props={props} />
+        <PropTable props={toastProps} />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Acessibilidade
+        </h2>
+        <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+          O toast usa <code style={{ fontFamily: "var(--font-mono)" }}>role="alert"</code>,{" "}
+          <code style={{ fontFamily: "var(--font-mono)" }}>aria-live="assertive"</code> e{" "}
+          <code style={{ fontFamily: "var(--font-mono)" }}>aria-atomic="true"</code> — o conteúdo é
+          anunciado imediatamente por leitores de tela quando aparece. Use{" "}
+          <code style={{ fontFamily: "var(--font-mono)" }}>duration={0}</code> para mensagens que
+          requerem ação do usuário, para que não desapareçam antes de serem lidas.
+        </p>
       </section>
     </div>
   );

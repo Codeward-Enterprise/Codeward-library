@@ -4,14 +4,7 @@
   "description": "Brand icons and marks for Codeward",
   "license": "MIT",
   "author": "Vitor Medina",
-  "keywords": [
-    "react",
-    "icons",
-    "svg",
-    "brand",
-    "design-system",
-    "codeward"
-  ],
+  "keywords": ["react", "icons", "svg", "brand", "design-system", "codeward"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Codeward-Enterprise/Codeward-library.git",
@@ -36,9 +29,7 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

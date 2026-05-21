@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@codeforward/utils";
 import { type HTMLAttributes, type ReactNode, forwardRef, useState } from "react";
 

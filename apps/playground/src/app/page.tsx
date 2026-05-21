@@ -1,4 +1,3 @@
-import { colors } from "@codeforward/tokens";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { CodewardMark } from "@codeforward/icons";
+import { colors } from "@codeforward/tokens";
 
 // ─── Showcase section wrapper ─────────────────────────────────────────────────
 function Section({
