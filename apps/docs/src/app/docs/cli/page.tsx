@@ -120,7 +120,7 @@ export default function CliPage() {
               fontFamily: "var(--font-mono)",
             }}
           >
-            <pre style={{ margin: 0 }}>{`✓ button.tsx → src/components/ui/button.tsx`}</pre>
+            <pre style={{ margin: 0 }}>{"✓ button.tsx → src/components/ui/button.tsx"}</pre>
           </div>
         </div>
       </section>

@@ -23,7 +23,11 @@ function ColorSwatch({
           {tag && (
             <span
               className="ml-1.5 text-[10px] px-1.5 py-0.5 rounded-full"
-              style={{ backgroundColor: "var(--cta)", color: "var(--cta-foreground)", fontWeight: 500 }}
+              style={{
+                backgroundColor: "var(--cta)",
+                color: "var(--cta-foreground)",
+                fontWeight: 500,
+              }}
             >
               {tag}
             </span>

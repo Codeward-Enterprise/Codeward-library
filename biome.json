@@ -40,6 +40,18 @@
       "arrowParentheses": "always"
     }
   },
+  "overrides": [
+    {
+      "include": ["apps/docs/src/app/layout.tsx"],
+      "linter": {
+        "rules": {
+          "security": {
+            "noDangerouslySetInnerHtml": "off"
+          }
+        }
+      }
+    }
+  ],
   "files": {
     "ignore": [
       "**/node_modules/**",

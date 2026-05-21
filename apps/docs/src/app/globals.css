@@ -80,17 +80,17 @@
 }
 
 .dark {
-  --background: #07111E;
-  --foreground: #D9E2EE;
-  --muted: #0A2540;
-  --muted-foreground: #8DA8CC;
-  --border: #1C3D62;
-  --input: #1C3D62;
+  --background: #07111e;
+  --foreground: #d9e2ee;
+  --muted: #0a2540;
+  --muted-foreground: #8da8cc;
+  --border: #1c3d62;
+  --input: #1c3d62;
   /* primary becomes mint in dark so it's always legible as text on dark backgrounds */
-  --primary: #00D4B8;
-  --primary-hover: #00A593;
-  --primary-foreground: #0A2540;
-  --nav-active: #00D4B8;
+  --primary: #00d4b8;
+  --primary-hover: #00a593;
+  --primary-foreground: #0a2540;
+  --nav-active: #00d4b8;
   --nav-active-bg: rgba(0, 212, 184, 0.12);
   --home-header-bg: rgba(7, 17, 30, 0.85);
   --code-badge-bg: rgba(0, 212, 184, 0.12);
