@@ -1,3 +1,4 @@
+import { colors } from "@codeforward/tokens";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -188,18 +189,11 @@ export default function HomePage() {
                   className="text-xs font-medium uppercase tracking-widest mb-3"
                   style={{ color: "var(--muted-foreground)" }}
                 >
-                  Navy
+                  Navy — via @codeforward/tokens
                 </p>
                 <div className="grid grid-cols-6 gap-3">
-                  {[
-                    ["50", "#F0F4F9"],
-                    ["100", "#D9E2EE"],
-                    ["300", "#8DA8CC"],
-                    ["500", "#2D5685"],
-                    ["700", "#0A2540"],
-                    ["900", "#04111F"],
-                  ].map(([shade, hex]) => (
-                    <TokenChip key={shade} label={`Navy ${shade}`} hex={hex as string} />
+                  {([50, 100, 300, 500, 700, 900] as const).map((shade) => (
+                    <TokenChip key={shade} label={`Navy ${shade}`} hex={colors.navy[shade]} />
                   ))}
                 </div>
               </div>
@@ -208,18 +202,11 @@ export default function HomePage() {
                   className="text-xs font-medium uppercase tracking-widest mb-3"
                   style={{ color: "var(--muted-foreground)" }}
                 >
-                  Mint
+                  Mint — via @codeforward/tokens
                 </p>
                 <div className="grid grid-cols-6 gap-3">
-                  {[
-                    ["50", "#E6FCF8"],
-                    ["100", "#B3F5E9"],
-                    ["300", "#4DE7CC"],
-                    ["500", "#00D4B8"],
-                    ["600", "#00A593"],
-                    ["800", "#005048"],
-                  ].map(([shade, hex]) => (
-                    <TokenChip key={shade} label={`Mint ${shade}`} hex={hex as string} />
+                  {([50, 100, 300, 500, 600, 800] as const).map((shade) => (
+                    <TokenChip key={shade} label={`Mint ${shade}`} hex={colors.mint[shade]} />
                   ))}
                 </div>
               </div>

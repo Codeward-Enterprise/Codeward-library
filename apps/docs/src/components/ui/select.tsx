@@ -1,157 +1,242 @@
-import * as SelectPrimitive from "@radix-ui/react-select";
-import { type ComponentPropsWithoutRef, type ElementRef, forwardRef } from "react";
+"use client";
 
-export const Select = SelectPrimitive.Root;
-export const SelectGroup = SelectPrimitive.Group;
-export const SelectValue = SelectPrimitive.Value;
+import { cn } from "@codeforward/utils";
+import {
+  type ButtonHTMLAttributes,
+  type HTMLAttributes,
+  type KeyboardEvent,
+  type ReactNode,
+  createContext,
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
+
+// ── Context ───────────────────────────────────────────────────────────────────
+
+interface SelectCtx {
+  value: string;
+  open: boolean;
+  disabled: boolean;
+  listboxId: string;
+  select: (value: string, label: string) => void;
+  setOpen: (v: boolean) => void;
+  selectedLabel: string;
+}
+
+const Ctx = createContext<SelectCtx>({
+  value: "", open: false, disabled: false, listboxId: "",
+  select: () => {}, setOpen: () => {}, selectedLabel: "",
+});
+
+// ── Root ──────────────────────────────────────────────────────────────────────
+
+export interface SelectProps {
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  disabled?: boolean;
+  open?: boolean;
+  children: ReactNode;
+}
+
+export function Select({ value: controlled, defaultValue = "", onValueChange, disabled = false, open: controlledOpen, children }: SelectProps) {
+  const [internal, setInternal] = useState(defaultValue);
+  const [selectedLabel, setSelectedLabel] = useState("");
+  const [openInternal, setOpenInternal] = useState(false);
+  const open = controlledOpen ?? openInternal;
+  const value = controlled ?? internal;
+  const listboxId = useId();
+
+  const setOpen = useCallback((v: boolean) => {
+    if (controlledOpen === undefined) setOpenInternal(v);
+  }, [controlledOpen]);
+
+  const select = useCallback(
+    (v: string, label: string) => {
+      if (controlled === undefined) setInternal(v);
+      setSelectedLabel(label);
+      onValueChange?.(v);
+      setOpen(false);
+    },
+    [controlled, onValueChange, setOpen],
+  );
+
+  return (
+    <Ctx.Provider value={{ value, open, disabled, listboxId, select, setOpen, selectedLabel }}>
+      <div className="relative inline-block">{children}</div>
+    </Ctx.Provider>
+  );
+}
+
+export const SelectGroup = ({ children }: { children: ReactNode }) => <div>{children}</div>;
+export const SelectValue = ({ placeholder }: { placeholder?: string }) => {
+  const { selectedLabel } = useContext(Ctx);
+  return <span>{selectedLabel || placeholder}</span>;
+};
 
 // ── Trigger ───────────────────────────────────────────────────────────────────
-export const SelectTrigger = forwardRef<
-  ElementRef<typeof SelectPrimitive.Trigger>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={[
-      "flex h-10 w-full items-center justify-between gap-2 px-3.5 py-2.5",
-      "rounded-lg border bg-white",
-      "text-sm font-normal leading-none",
-      "border-[var(--border)] shadow-[0_1px_2px_rgba(10,37,64,0.04)]",
-      "hover:border-[var(--color-neutral-400)]",
-      "transition-all duration-150",
-      "focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30 focus:border-[var(--ring)]",
-      "focus:shadow-[0_0_0_3px_rgba(0,212,184,0.12)]",
-      "disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[var(--muted)]",
-      "data-[placeholder]:text-[var(--muted-foreground)]",
-      "[&[data-state=open]]:border-[var(--ring)] [&[data-state=open]]:ring-2 [&[data-state=open]]:ring-[var(--ring)]/30",
-      className,
-    ]
-      .filter(Boolean)
-      .join(" ")}
-    style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}
-    {...props}
-  >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true"
-        className="shrink-0 opacity-50"
+
+export const SelectTrigger = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTMLButtonElement>>(
+  ({ className, children, ...props }, ref) => {
+    const { open, setOpen, disabled, listboxId } = useContext(Ctx);
+    return (
+      <button
+        ref={ref}
+        type="button"
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={listboxId}
+        disabled={disabled}
+        onClick={() => setOpen(!open)}
+        className={cn(
+          "inline-flex items-center justify-between gap-2",
+          "h-10 px-3 rounded-lg border text-sm",
+          "bg-[var(--background)] text-[var(--foreground)]",
+          "border-[var(--border)]",
+          "transition-all duration-150 cursor-pointer select-none",
+          "hover:border-[var(--primary)]",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]",
+          "disabled:opacity-40 disabled:cursor-not-allowed",
+          "min-w-[160px]",
+          className,
+        )}
+        style={{ fontFamily: "var(--font-sans)" }}
+        {...props}
       >
-        <path
-          d="M4 6l4 4 4-4"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-));
-SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
+        {children}
+        <svg
+          width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"
+          className="shrink-0 transition-transform duration-150"
+          style={{
+            color: "var(--muted-foreground)",
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        >
+          <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+    );
+  },
+);
+SelectTrigger.displayName = "SelectTrigger";
 
 // ── Content ───────────────────────────────────────────────────────────────────
-export const SelectContent = forwardRef<
-  ElementRef<typeof SelectPrimitive.Content>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
->(({ className, children, position = "popper", ...props }, ref) => (
-  <SelectPrimitive.Portal>
-    <SelectPrimitive.Content
-      ref={ref}
-      className={[
-        "relative z-50 min-w-[8rem] overflow-hidden",
-        "rounded-xl border bg-white",
-        "shadow-[0_8px_30px_rgba(10,37,64,0.12),0_2px_6px_rgba(10,37,64,0.06)]",
-        "animate-in fade-in-0 zoom-in-95",
-        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
-        "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
-        "duration-100",
-        position === "popper" &&
-          "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1 w-[var(--radix-select-trigger-width)]",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      style={{ borderColor: "var(--border)" }}
-      position={position}
-      {...props}
-    >
-      <SelectPrimitive.Viewport className="p-1">{children}</SelectPrimitive.Viewport>
-    </SelectPrimitive.Content>
-  </SelectPrimitive.Portal>
-));
-SelectContent.displayName = SelectPrimitive.Content.displayName;
+
+export const SelectContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, children, ...props }, ref) => {
+    const { open, setOpen, listboxId } = useContext(Ctx);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Close on outside click
+    useEffect(() => {
+      if (!open) return;
+      const handler = (e: MouseEvent) => {
+        if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+          setOpen(false);
+        }
+      };
+      document.addEventListener("mousedown", handler);
+      return () => document.removeEventListener("mousedown", handler);
+    }, [open, setOpen]);
+
+    if (!open) return null;
+
+    return (
+      <div ref={containerRef} className="absolute left-0 top-full mt-1 z-50 w-full min-w-[160px]">
+        <div
+          ref={ref}
+          id={listboxId}
+          role="listbox"
+          className={cn(
+            "rounded-xl border py-1",
+            "bg-white",
+            "shadow-[0_8px_30px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)]",
+            "animate-in fade-in-0 zoom-in-95 duration-100",
+            className,
+          )}
+          style={{ borderColor: "var(--border)" }}
+          {...props}
+        >
+          {children}
+        </div>
+      </div>
+    );
+  },
+);
+SelectContent.displayName = "SelectContent";
 
 // ── Label ─────────────────────────────────────────────────────────────────────
-export const SelectLabel = forwardRef<
-  ElementRef<typeof SelectPrimitive.Label>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Label
-    ref={ref}
-    className={["px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wider", className]
-      .filter(Boolean)
-      .join(" ")}
+
+export const SelectLabel = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn("px-3 py-1.5 text-xs font-medium uppercase tracking-wider", className)}
     style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-sans)" }}
     {...props}
   />
-));
-SelectLabel.displayName = SelectPrimitive.Label.displayName;
+);
 
 // ── Item ──────────────────────────────────────────────────────────────────────
-export const SelectItem = forwardRef<
-  ElementRef<typeof SelectPrimitive.Item>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Item
-    ref={ref}
-    className={[
-      "relative flex w-full cursor-pointer select-none items-center",
-      "rounded-lg px-2.5 py-2 text-sm outline-none gap-2",
-      "transition-colors duration-100",
-      "hover:bg-[var(--muted)]",
-      "focus:bg-[var(--muted)]",
-      "data-[disabled]:pointer-events-none data-[disabled]:opacity-40",
-      "data-[highlighted]:bg-[var(--muted)]",
-      className,
-    ]
-      .filter(Boolean)
-      .join(" ")}
-    style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}
-    {...props}
-  >
-    <span className="absolute right-2.5 flex size-3.5 items-center justify-center">
-      <SelectPrimitive.ItemIndicator>
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <path
-            d="M2 6l3 3 5-5"
-            stroke="var(--cta)"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+
+export interface SelectItemProps extends HTMLAttributes<HTMLDivElement> {
+  value: string;
+  disabled?: boolean;
+  children: ReactNode;
+}
+
+export function SelectItem({ value, disabled = false, className, children, ...props }: SelectItemProps) {
+  const { value: selected, select } = useContext(Ctx);
+  const isSelected = selected === value;
+  const labelText = typeof children === "string" ? children : "";
+
+  const handleKey = (e: KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      if (!disabled) select(value, labelText);
+    }
+  };
+
+  return (
+    <div
+      role="option"
+      aria-selected={isSelected}
+      aria-disabled={disabled}
+      tabIndex={disabled ? -1 : 0}
+      onClick={() => !disabled && select(value, labelText)}
+      onKeyDown={handleKey}
+      className={cn(
+        "relative flex items-center gap-2 px-3 py-2 text-sm cursor-pointer select-none",
+        "transition-colors duration-100",
+        isSelected
+          ? "bg-[var(--color-navy-50)] text-[var(--primary)] font-medium"
+          : "text-[var(--foreground)] hover:bg-[var(--muted)]",
+        disabled && "opacity-40 cursor-not-allowed pointer-events-none",
+        className,
+      )}
+      style={{ fontFamily: "var(--font-sans)" }}
+      {...props}
+    >
+      <span className="flex-1">{children}</span>
+      {isSelected && (
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2 7l4 4 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-      </SelectPrimitive.ItemIndicator>
-    </span>
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-  </SelectPrimitive.Item>
-));
-SelectItem.displayName = SelectPrimitive.Item.displayName;
+      )}
+    </div>
+  );
+}
 
 // ── Separator ─────────────────────────────────────────────────────────────────
-export const SelectSeparator = forwardRef<
-  ElementRef<typeof SelectPrimitive.Separator>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Separator
-    ref={ref}
-    className={["-mx-1 my-1 h-px", className].filter(Boolean).join(" ")}
-    style={{ background: "var(--border)" }}
+
+export const SelectSeparator = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn("my-1 h-px", className)}
+    style={{ backgroundColor: "var(--border)" }}
     {...props}
   />
-));
-SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
+);

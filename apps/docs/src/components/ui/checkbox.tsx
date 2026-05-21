@@ -1,66 +1,100 @@
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { type ComponentPropsWithoutRef, type ElementRef, forwardRef, useId } from "react";
+"use client";
 
-export interface CheckboxProps extends ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {
+import { cn } from "@codeforward/utils";
+import { type HTMLAttributes, forwardRef, useId, useState } from "react";
+
+export interface CheckboxProps extends Omit<HTMLAttributes<HTMLButtonElement>, "onChange"> {
   label?: string;
   description?: string;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  disabled?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
 }
 
-export const Checkbox = forwardRef<ElementRef<typeof CheckboxPrimitive.Root>, CheckboxProps>(
-  ({ className, label, description, id: externalId, ...props }, ref) => {
-    const generatedId = useId();
-    const id = externalId ?? generatedId;
+export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
+  (
+    {
+      className,
+      label,
+      description,
+      id: idProp,
+      checked: controlledChecked,
+      defaultChecked = false,
+      disabled = false,
+      onCheckedChange,
+      ...props
+    },
+    ref,
+  ) => {
+    const uid = useId();
+    const id = idProp ?? uid;
+    const descId = description ? `${id}-desc` : undefined;
+    const [internal, setInternal] = useState(defaultChecked);
+    const isChecked = controlledChecked ?? internal;
+
+    const toggle = () => {
+      if (disabled) return;
+      const next = !isChecked;
+      if (controlledChecked === undefined) setInternal(next);
+      onCheckedChange?.(next);
+    };
 
     return (
-      <div className="flex gap-3" style={{ fontFamily: "var(--font-sans)" }}>
-        <CheckboxPrimitive.Root
+      <div className={cn("flex items-start gap-3", className)}>
+        <button
           ref={ref}
           id={id}
-          className={[
-            "shrink-0 size-[18px] mt-[1px]",
-            "rounded-[4px] border-2",
-            "transition-all duration-150",
-            // Unchecked
-            "border-[var(--border)] bg-white",
-            "hover:border-[var(--color-neutral-400)]",
-            // Checked
-            "data-[state=checked]:bg-[var(--primary)] data-[state=checked]:border-[var(--primary)]",
-            // Focus
+          type="button"
+          role="checkbox"
+          aria-checked={isChecked}
+          aria-describedby={descId}
+          disabled={disabled}
+          onClick={toggle}
+          className={cn(
+            "flex shrink-0 items-center justify-center mt-[2px]",
+            "w-[18px] h-[18px] rounded-[4px] border-2",
+            "transition-all duration-150 cursor-pointer",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-1",
-            // Disabled
-            "disabled:cursor-not-allowed disabled:opacity-40",
-            className,
-          ]
-            .filter(Boolean)
-            .join(" ")}
+            "disabled:opacity-40 disabled:cursor-not-allowed",
+          )}
+          style={{
+            backgroundColor: isChecked ? "var(--primary)" : "white",
+            borderColor: isChecked ? "var(--primary)" : "var(--border)",
+          }}
           {...props}
         >
-          <CheckboxPrimitive.Indicator className="flex items-center justify-center text-white">
-            <svg width="11" height="8" viewBox="0 0 11 8" fill="none" aria-hidden="true">
+          {isChecked && (
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
               <path
-                d="M1 4l3 3 6-6"
-                stroke="currentColor"
-                strokeWidth="1.8"
+                d="M2 6l3 3 5-5"
+                stroke="white"
+                strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
-          </CheckboxPrimitive.Indicator>
-        </CheckboxPrimitive.Root>
+          )}
+        </button>
 
         {(label || description) && (
           <div className="flex flex-col gap-0.5">
             {label && (
               <label
                 htmlFor={id}
-                className="text-sm font-medium leading-none cursor-pointer"
-                style={{ color: "var(--foreground)" }}
+                onClick={toggle}
+                className="text-sm font-medium cursor-pointer select-none"
+                style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}
               >
                 {label}
               </label>
             )}
             {description && (
-              <p className="text-xs leading-snug" style={{ color: "var(--muted-foreground)" }}>
+              <p
+                id={descId}
+                className="text-xs leading-relaxed"
+                style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-sans)" }}
+              >
                 {description}
               </p>
             )}
@@ -70,4 +104,5 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxPrimitive.Root>, Ch
     );
   },
 );
+
 Checkbox.displayName = "Checkbox";

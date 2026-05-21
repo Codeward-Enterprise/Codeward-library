@@ -1,62 +1,93 @@
-import * as SwitchPrimitive from "@radix-ui/react-switch";
-import { type ComponentPropsWithoutRef, type ElementRef, forwardRef, useId } from "react";
+"use client";
 
-export interface SwitchProps extends ComponentPropsWithoutRef<typeof SwitchPrimitive.Root> {
+import { cn } from "@codeforward/utils";
+import { type HTMLAttributes, forwardRef, useId, useState } from "react";
+
+export interface SwitchProps extends Omit<HTMLAttributes<HTMLButtonElement>, "onChange"> {
   label?: string;
   description?: string;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  disabled?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
 }
 
-export const Switch = forwardRef<ElementRef<typeof SwitchPrimitive.Root>, SwitchProps>(
-  ({ className, label, description, id: externalId, ...props }, ref) => {
-    const generatedId = useId();
-    const id = externalId ?? generatedId;
+export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
+  (
+    {
+      className,
+      label,
+      description,
+      id: idProp,
+      checked: controlledChecked,
+      defaultChecked = false,
+      disabled = false,
+      onCheckedChange,
+      ...props
+    },
+    ref,
+  ) => {
+    const uid = useId();
+    const id = idProp ?? uid;
+    const descId = description ? `${id}-desc` : undefined;
+    const [internal, setInternal] = useState(defaultChecked);
+    const isChecked = controlledChecked ?? internal;
+
+    const toggle = () => {
+      if (disabled) return;
+      const next = !isChecked;
+      if (controlledChecked === undefined) setInternal(next);
+      onCheckedChange?.(next);
+    };
 
     return (
-      <div className="flex items-start gap-3" style={{ fontFamily: "var(--font-sans)" }}>
-        <SwitchPrimitive.Root
+      <div className={cn("flex items-start gap-3", className)}>
+        <button
           ref={ref}
           id={id}
-          className={[
-            "peer relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full",
-            "border-2 border-transparent",
-            "transition-colors duration-200 ease-out",
-            // Unchecked
-            "bg-[var(--border)]",
-            // Checked — Mint 500
-            "data-[state=checked]:bg-[var(--cta)]",
-            // Focus
+          type="button"
+          role="switch"
+          aria-checked={isChecked}
+          aria-describedby={descId}
+          disabled={disabled}
+          onClick={toggle}
+          className={cn(
+            "relative inline-flex shrink-0 mt-[2px]",
+            "h-6 w-11 cursor-pointer rounded-full border-2 border-transparent",
+            "transition-colors duration-200 ease-in-out",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2",
-            // Disabled
-            "disabled:cursor-not-allowed disabled:opacity-40",
-            className,
-          ]
-            .filter(Boolean)
-            .join(" ")}
+            "disabled:opacity-40 disabled:cursor-not-allowed",
+          )}
+          style={{
+            backgroundColor: isChecked ? "var(--cta)" : "var(--color-neutral-300)",
+          }}
           {...props}
         >
-          <SwitchPrimitive.Thumb
-            className={[
-              "pointer-events-none block size-5 rounded-full bg-white",
-              "shadow-[0_1px_3px_rgba(0,0,0,0.2)]",
-              "transition-transform duration-200 ease-out",
-              "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0",
-            ].join(" ")}
+          <span
+            className="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.2)] transition-transform duration-200 ease-in-out"
+            style={{ transform: isChecked ? "translateX(20px)" : "translateX(0px)" }}
+            aria-hidden="true"
           />
-        </SwitchPrimitive.Root>
+        </button>
 
         {(label || description) && (
           <div className="flex flex-col gap-0.5">
             {label && (
               <label
                 htmlFor={id}
-                className="text-sm font-medium leading-none cursor-pointer"
-                style={{ color: "var(--foreground)" }}
+                onClick={toggle}
+                className="text-sm font-medium cursor-pointer select-none"
+                style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}
               >
                 {label}
               </label>
             )}
             {description && (
-              <p className="text-xs leading-snug" style={{ color: "var(--muted-foreground)" }}>
+              <p
+                id={descId}
+                className="text-xs leading-relaxed"
+                style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-sans)" }}
+              >
                 {description}
               </p>
             )}
@@ -66,4 +97,5 @@ export const Switch = forwardRef<ElementRef<typeof SwitchPrimitive.Root>, Switch
     );
   },
 );
+
 Switch.displayName = "Switch";

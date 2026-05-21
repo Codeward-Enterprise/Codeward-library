@@ -1,21 +1,29 @@
 import { type HTMLAttributes, forwardRef } from "react";
 
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  /** "dark" — neutral dark surface (#252528) for use on dark canvases */
+  variant?: "default" | "dark";
+}
+
 // ── Card ─────────────────────────────────────────────────────────────────────
-// Standard white surface with soft elevation
-export const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  ({ className, variant = "default", style, ...props }, ref) => (
     <div
       ref={ref}
       className={[
-        "relative flex flex-col overflow-hidden",
-        "rounded-2xl border bg-white",
-        // Multi-layer shadow: spread + colored drop shadow = realistic depth
-        "shadow-[0_1px_3px_rgba(10,37,64,0.06),0_4px_12px_rgba(10,37,64,0.04)]",
+        "relative flex flex-col overflow-hidden rounded-2xl border",
+        variant === "dark"
+          ? "shadow-[0_2px_8px_rgba(0,0,0,0.2)]"
+          : "bg-white shadow-[0_1px_3px_rgba(10,37,64,0.06),0_4px_12px_rgba(10,37,64,0.04)]",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
-      style={{ borderColor: "var(--border)" }}
+      style={{
+        borderColor: variant === "dark" ? "#333337" : "var(--border)",
+        background: variant === "dark" ? "#252528" : undefined,
+        ...style,
+      }}
       {...props}
     />
   ),

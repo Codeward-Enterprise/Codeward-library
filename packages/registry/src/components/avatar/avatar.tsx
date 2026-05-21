@@ -1,34 +1,26 @@
-import { type VariantProps, cva } from "class-variance-authority";
+import { cn } from "@codeforward/utils";
 import { type HTMLAttributes, type ReactNode, forwardRef, useState } from "react";
 
-const avatarVariants = cva(
-  [
-    "relative inline-flex shrink-0 items-center justify-center overflow-hidden",
-    "rounded-full font-medium select-none",
-    "transition-all duration-150",
-  ],
-  {
-    variants: {
-      size: {
-        xs: "size-6 text-[10px]",
-        sm: "size-8 text-xs",
-        md: "size-10 text-sm",
-        lg: "size-12 text-base",
-        xl: "size-16 text-lg",
-      },
-    },
-    defaultVariants: { size: "md" },
-  },
-);
+type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl";
+
+const sizeClasses: Record<AvatarSize, string> = {
+  xs: "size-6 text-[10px]",
+  sm: "size-8 text-xs",
+  md: "size-10 text-sm",
+  lg: "size-12 text-base",
+  xl: "size-16 text-lg",
+};
+
+const base = "relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full font-medium select-none transition-all duration-150";
 
 // Deterministic brand-color palette for initials fallback
 const AVATAR_COLORS: Array<[string, string]> = [
-  ["#0A2540", "#FFFFFF"], // navy-700 / white
-  ["#1C3D62", "#FFFFFF"], // navy-600 / white
-  ["#2D5685", "#FFFFFF"], // navy-500 / white
-  ["#00A593", "#0A2540"], // mint-600 / navy
-  ["#005048", "#00D4B8"], // mint-800 / mint
-  ["#374151", "#F6F9FC"], // neutral-700 / light
+  ["#0A2540", "#FFFFFF"],
+  ["#1C3D62", "#FFFFFF"],
+  ["#2D5685", "#FFFFFF"],
+  ["#00A593", "#0A2540"],
+  ["#005048", "#00D4B8"],
+  ["#374151", "#F6F9FC"],
 ];
 
 function pickColor(seed: string): [string, string] {
@@ -52,16 +44,15 @@ function getInitials(alt: string, fallback?: string): string {
   );
 }
 
-export interface AvatarProps
-  extends HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof avatarVariants> {
+export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   src?: string;
   alt?: string;
   fallback?: string;
+  size?: AvatarSize;
 }
 
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
-  ({ className, size, src, alt = "", fallback, children, ...props }, ref) => {
+  ({ className, size = "md", src, alt = "", fallback, children, ...props }, ref) => {
     const [imgError, setImgError] = useState(false);
     const showImage = src && !imgError;
     const initials = getInitials(alt, fallback);
@@ -71,19 +62,12 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     return (
       <span
         ref={ref}
-        className={avatarVariants({ size, className })}
-        style={
-          showImage ? undefined : { background: bg, color: fg, fontFamily: "var(--font-sans)" }
-        }
+        className={cn(base, sizeClasses[size], className)}
+        style={showImage ? undefined : { background: bg, color: fg, fontFamily: "var(--font-sans)" }}
         {...props}
       >
         {showImage ? (
-          <img
-            src={src}
-            alt={alt}
-            className="size-full object-cover"
-            onError={() => setImgError(true)}
-          />
+          <img src={src} alt={alt} className="size-full object-cover" onError={() => setImgError(true)} />
         ) : (
           initials
         )}
@@ -96,7 +80,7 @@ Avatar.displayName = "Avatar";
 // ── AvatarGroup ───────────────────────────────────────────────────────────────
 export interface AvatarGroupProps extends HTMLAttributes<HTMLDivElement> {
   max?: number;
-  size?: VariantProps<typeof avatarVariants>["size"];
+  size?: AvatarSize;
   children: ReactNode;
 }
 
@@ -107,21 +91,17 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     const overflow = max ? items.length - max : 0;
 
     return (
-      <div
-        ref={ref}
-        className={["flex items-center", className].filter(Boolean).join(" ")}
-        {...props}
-      >
+      <div ref={ref} className={cn("flex items-center", className)} {...props}>
         <div className="flex items-center -space-x-2">
           {visible.map((child, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: avatar slots are positional, order is stable
+            // biome-ignore lint/suspicious/noArrayIndexKey: avatar slots are positional
             <span key={i} className="ring-2 ring-white rounded-full inline-flex">
               {child}
             </span>
           ))}
           {overflow > 0 && (
             <span
-              className={[avatarVariants({ size }), "ring-2 ring-white"].join(" ")}
+              className={cn(base, sizeClasses[size], "ring-2 ring-white")}
               style={{ background: "#2A2A2E", color: "#98A7B5", fontFamily: "var(--font-sans)" }}
             >
               +{overflow}
@@ -133,5 +113,3 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   },
 );
 AvatarGroup.displayName = "AvatarGroup";
-
-export { avatarVariants };
