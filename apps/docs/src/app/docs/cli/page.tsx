@@ -111,9 +111,6 @@ export default function CliPage() {
               "# um componente\ncodeward add button\n\n# múltiplos de uma vez\ncodeward add button badge input card avatar"
             }
           />
-          <p style={{ color: "var(--muted-foreground)" }}>
-            Após copiar, o CLI exibe as dependências de peer que o componente precisa:
-          </p>
           <div
             className="rounded-xl p-4 border font-mono text-sm"
             style={{
@@ -123,10 +120,7 @@ export default function CliPage() {
               fontFamily: "var(--font-mono)",
             }}
           >
-            <pre style={{ margin: 0 }}>{`✓ button.tsx → src/components/ui/button.tsx
-
-Peer dependencies needed:
-  npm install @radix-ui/react-slot class-variance-authority`}</pre>
+            <pre style={{ margin: 0 }}>{`✓ button.tsx → src/components/ui/button.tsx`}</pre>
           </div>
         </div>
       </section>
@@ -167,63 +161,12 @@ Peer dependencies needed:
         <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
           Dependências por componente
         </h2>
-        <div className="overflow-x-auto rounded-xl border" style={{ borderColor: "var(--border)" }}>
-          <table className="w-full text-sm">
-            <thead>
-              <tr style={{ backgroundColor: "var(--muted)" }}>
-                {["Componente", "Peer dependencies"].map((h) => (
-                  <th
-                    key={h}
-                    className="text-left px-4 py-3 text-xs font-medium uppercase tracking-widest border-b"
-                    style={{ color: "var(--muted-foreground)", borderColor: "var(--border)" }}
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ["accordion", "@radix-ui/react-accordion"],
-                ["avatar", "— (sem dependências externas)"],
-                ["badge", "class-variance-authority"],
-                ["button", "@radix-ui/react-slot, class-variance-authority"],
-                ["card", "—"],
-                ["checkbox", "@radix-ui/react-checkbox"],
-                ["dialog", "@radix-ui/react-dialog"],
-                ["input", "—"],
-                ["select", "@radix-ui/react-select"],
-                ["switch", "@radix-ui/react-switch"],
-                ["table", "—"],
-                ["tabs", "@radix-ui/react-tabs"],
-                ["toast", "@radix-ui/react-toast, class-variance-authority"],
-                ["tooltip", "@radix-ui/react-tooltip"],
-              ].map(([comp, deps], i) => (
-                <tr
-                  key={comp}
-                  style={{ backgroundColor: i % 2 === 0 ? "var(--background)" : "var(--muted)" }}
-                >
-                  <td className="px-4 py-3 border-b" style={{ borderColor: "var(--border)" }}>
-                    <code style={{ fontFamily: "var(--font-mono)", color: "var(--primary)" }}>
-                      {comp}
-                    </code>
-                  </td>
-                  <td
-                    className="px-4 py-3 border-b"
-                    style={{
-                      borderColor: "var(--border)",
-                      color: "var(--muted-foreground)",
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.8rem",
-                    }}
-                  >
-                    {deps}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <p style={{ color: "var(--muted-foreground)" }}>
+          Todos os componentes dependem apenas de{" "}
+          <code style={{ fontFamily: "var(--font-mono)" }}>react</code> e{" "}
+          <code style={{ fontFamily: "var(--font-mono)" }}>@codeforward/utils</code>. Nenhuma
+          biblioteca externa como Radix UI ou CVA é necessária.
+        </p>
       </section>
     </div>
   );
