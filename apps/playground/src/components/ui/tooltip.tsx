@@ -20,7 +20,9 @@ export const TooltipProvider = ({ children }: { children: ReactNode }) => <>{chi
 
 // ── Tooltip ───────────────────────────────────────────────────────────────────
 
-interface TooltipCtx { open: boolean }
+interface TooltipCtx {
+  open: boolean;
+}
 const TooltipCtx = createContext<TooltipCtx>({ open: false });
 
 export interface TooltipProps {
@@ -115,10 +117,22 @@ export function SimpleTooltip({
       const scroll = { x: window.scrollX, y: window.scrollY };
       let top = 0;
       let left = 0;
-      if (side === "top") { top = rect.top + scroll.y - sideOffset - 8; left = rect.left + scroll.x + rect.width / 2; }
-      if (side === "bottom") { top = rect.bottom + scroll.y + sideOffset; left = rect.left + scroll.x + rect.width / 2; }
-      if (side === "left") { top = rect.top + scroll.y + rect.height / 2; left = rect.left + scroll.x - sideOffset - 8; }
-      if (side === "right") { top = rect.top + scroll.y + rect.height / 2; left = rect.right + scroll.x + sideOffset; }
+      if (side === "top") {
+        top = rect.top + scroll.y - sideOffset - 8;
+        left = rect.left + scroll.x + rect.width / 2;
+      }
+      if (side === "bottom") {
+        top = rect.bottom + scroll.y + sideOffset;
+        left = rect.left + scroll.x + rect.width / 2;
+      }
+      if (side === "left") {
+        top = rect.top + scroll.y + rect.height / 2;
+        left = rect.left + scroll.x - sideOffset - 8;
+      }
+      if (side === "right") {
+        top = rect.top + scroll.y + rect.height / 2;
+        left = rect.right + scroll.x + sideOffset;
+      }
       setPos({ top, left });
       setVisible(true);
     }, delayDuration);

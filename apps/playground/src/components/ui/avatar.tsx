@@ -11,7 +11,8 @@ const sizeClasses: Record<AvatarSize, string> = {
   xl: "size-16 text-lg",
 };
 
-const base = "relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full font-medium select-none transition-all duration-150";
+const base =
+  "relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full font-medium select-none transition-all duration-150";
 
 // Deterministic brand-color palette for initials fallback
 const AVATAR_COLORS: Array<[string, string]> = [
@@ -63,11 +64,18 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       <span
         ref={ref}
         className={cn(base, sizeClasses[size], className)}
-        style={showImage ? undefined : { background: bg, color: fg, fontFamily: "var(--font-sans)" }}
+        style={
+          showImage ? undefined : { background: bg, color: fg, fontFamily: "var(--font-sans)" }
+        }
         {...props}
       >
         {showImage ? (
-          <img src={src} alt={alt} className="size-full object-cover" onError={() => setImgError(true)} />
+          <img
+            src={src}
+            alt={alt}
+            className="size-full object-cover"
+            onError={() => setImgError(true)}
+          />
         ) : (
           initials
         )}

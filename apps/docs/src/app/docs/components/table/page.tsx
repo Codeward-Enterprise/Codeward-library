@@ -1,7 +1,15 @@
-import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { Badge } from "@/components/ui/badge";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Table" };
 
@@ -9,7 +17,10 @@ export default function TablePage() {
   return (
     <div className="space-y-10" style={{ fontFamily: "var(--font-sans)" }}>
       <div className="space-y-2">
-        <p className="text-sm" style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}>
+        <p
+          className="text-sm"
+          style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
+        >
           codeward add table
         </p>
         <h1 className="text-4xl font-medium tracking-tight" style={{ color: "var(--foreground)" }}>
@@ -24,14 +35,18 @@ export default function TablePage() {
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Instalação</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Instalação
+        </h2>
         <CodeBlock language="bash" code="codeward add table" />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Exemplo</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Exemplo
+        </h2>
         <div className="rounded-xl border overflow-hidden" style={{ borderColor: "var(--border)" }}>
           <Table>
             <TableCaption>Sprints do Q2 2026</TableCaption>
@@ -54,7 +69,9 @@ export default function TablePage() {
                   <TableCell>{period}</TableCell>
                   <TableCell>{velocity}</TableCell>
                   <TableCell>
-                    <Badge variant={variant as "success" | "warning"} dot>{status}</Badge>
+                    <Badge variant={variant as "success" | "warning"} dot>
+                      {status}
+                    </Badge>
                   </TableCell>
                 </TableRow>
               ))}

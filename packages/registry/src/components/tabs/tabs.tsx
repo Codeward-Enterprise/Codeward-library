@@ -8,7 +8,6 @@ import {
   createContext,
   forwardRef,
   useContext,
-  useId,
   useRef,
   useState,
 } from "react";
@@ -28,7 +27,14 @@ export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
   onValueChange?: (value: string) => void;
 }
 
-export function Tabs({ defaultValue = "", value, onValueChange, className, children, ...props }: TabsProps) {
+export function Tabs({
+  defaultValue = "",
+  value,
+  onValueChange,
+  className,
+  children,
+  ...props
+}: TabsProps) {
   const [internal, setInternal] = useState(defaultValue);
   const active = value ?? internal;
   const setActive = (v: string) => {
@@ -70,19 +76,45 @@ export interface TabsTriggerProps extends HTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-export function TabsTrigger({ value, className, children, disabled = false, ...props }: TabsTriggerProps) {
+export function TabsTrigger({
+  value,
+  className,
+  children,
+  disabled = false,
+  ...props
+}: TabsTriggerProps) {
   const { active, setActive } = useContext(Ctx);
   const isActive = active === value;
   const ref = useRef<HTMLButtonElement>(null);
 
   const handleKey = (e: KeyboardEvent) => {
     const list = ref.current?.closest("[role=tablist]");
-    const triggers = list ? Array.from(list.querySelectorAll<HTMLElement>("[role=tab]:not([disabled])")) : [];
+    const triggers = list
+      ? Array.from(list.querySelectorAll<HTMLElement>("[role=tab]:not([disabled])"))
+      : [];
     const idx = triggers.indexOf(ref.current!);
-    if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); const next = triggers[(idx + 1) % triggers.length]; next?.focus(); (next as HTMLButtonElement)?.click(); }
-    if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); const prev = triggers[(idx - 1 + triggers.length) % triggers.length]; prev?.focus(); (prev as HTMLButtonElement)?.click(); }
-    if (e.key === "Home") { e.preventDefault(); triggers[0]?.focus(); (triggers[0] as HTMLButtonElement)?.click(); }
-    if (e.key === "End") { e.preventDefault(); triggers[triggers.length - 1]?.focus(); (triggers[triggers.length - 1] as HTMLButtonElement)?.click(); }
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = triggers[(idx + 1) % triggers.length];
+      next?.focus();
+      (next as HTMLButtonElement)?.click();
+    }
+    if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = triggers[(idx - 1 + triggers.length) % triggers.length];
+      prev?.focus();
+      (prev as HTMLButtonElement)?.click();
+    }
+    if (e.key === "Home") {
+      e.preventDefault();
+      triggers[0]?.focus();
+      (triggers[0] as HTMLButtonElement)?.click();
+    }
+    if (e.key === "End") {
+      e.preventDefault();
+      triggers[triggers.length - 1]?.focus();
+      (triggers[triggers.length - 1] as HTMLButtonElement)?.click();
+    }
   };
 
   return (

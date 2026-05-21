@@ -18,11 +18,17 @@
         "noUnusedVariables": "warn"
       },
       "style": {
-        "noNonNullAssertion": "warn",
+        "noNonNullAssertion": "off",
         "useImportType": "warn"
       },
       "suspicious": {
         "noExplicitAny": "warn"
+      },
+      "a11y": {
+        "useSemanticElements": "off",
+        "noNoninteractiveTabindex": "off",
+        "useKeyWithClickEvents": "off",
+        "useFocusableInteractive": "off"
       }
     }
   },

@@ -19,7 +19,10 @@ export function CodeBlock({ code, language = "tsx", filename }: CodeBlockProps) 
   };
 
   return (
-    <div className="rounded-xl overflow-hidden border" style={{ borderColor: "var(--color-navy-800)" }}>
+    <div
+      className="rounded-xl overflow-hidden border"
+      style={{ borderColor: "var(--color-navy-800)" }}
+    >
       {filename && (
         <div
           className="flex items-center justify-between px-4 py-2 border-b text-xs"

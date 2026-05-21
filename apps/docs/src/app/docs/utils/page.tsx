@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Utils" };
 
@@ -20,7 +20,9 @@ export default function UtilsPage() {
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>cn()</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          cn()
+        </h2>
         <p style={{ color: "var(--muted-foreground)" }}>
           Merge seguro de classes Tailwind CSS. Combina{" "}
           <code style={{ fontFamily: "var(--font-mono)" }}>clsx</code> com{" "}
@@ -52,7 +54,9 @@ function Button({ className, ...props }) {
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Formatadores</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Formatadores
+        </h2>
 
         {[
           {
@@ -96,7 +100,9 @@ formatDate("2026-05-20", { dateStyle: "long" }) // "20 de maio de 2026"`,
               >
                 {name}
               </code>
-              <p className="mt-1 text-sm" style={{ color: "var(--muted-foreground)" }}>{desc}</p>
+              <p className="mt-1 text-sm" style={{ color: "var(--muted-foreground)" }}>
+                {desc}
+              </p>
             </div>
             <CodeBlock language="ts" code={code} />
           </div>
@@ -106,17 +112,39 @@ formatDate("2026-05-20", { dateStyle: "long" }) // "20 de maio de 2026"`,
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Validadores</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Validadores
+        </h2>
         {[
           { name: "isCPF(value: string): boolean", desc: "Valida CPF com dígitos verificadores" },
           { name: "isCNPJ(value: string): boolean", desc: "Valida CNPJ com dígitos verificadores" },
-          { name: "isPhone(value: string): boolean", desc: "Valida telefone celular ou fixo (10 ou 11 dígitos)" },
+          {
+            name: "isPhone(value: string): boolean",
+            desc: "Valida telefone celular ou fixo (10 ou 11 dígitos)",
+          },
           { name: "isEmail(value: string): boolean", desc: "Validação básica de e-mail via regex" },
-          { name: "isCEP(value: string): boolean", desc: "Valida CEP brasileiro (XXXXX-XXX ou XXXXXXX)" },
+          {
+            name: "isCEP(value: string): boolean",
+            desc: "Valida CEP brasileiro (XXXXX-XXX ou XXXXXXX)",
+          },
         ].map(({ name, desc }, i) => (
-          <div key={name} className="flex gap-4 items-start p-3 rounded-lg" style={{ backgroundColor: i % 2 === 0 ? "var(--muted)" : "var(--background)", border: "1px solid var(--border)" }}>
-            <code className="shrink-0 text-sm" style={{ color: "var(--primary)", fontFamily: "var(--font-mono)" }}>{name}</code>
-            <span className="text-sm" style={{ color: "var(--muted-foreground)" }}>{desc}</span>
+          <div
+            key={name}
+            className="flex gap-4 items-start p-3 rounded-lg"
+            style={{
+              backgroundColor: i % 2 === 0 ? "var(--muted)" : "var(--background)",
+              border: "1px solid var(--border)",
+            }}
+          >
+            <code
+              className="shrink-0 text-sm"
+              style={{ color: "var(--primary)", fontFamily: "var(--font-mono)" }}
+            >
+              {name}
+            </code>
+            <span className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+              {desc}
+            </span>
           </div>
         ))}
         <CodeBlock

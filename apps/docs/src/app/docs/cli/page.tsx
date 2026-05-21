@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "CLI — codeward add" };
 
@@ -20,25 +20,33 @@ export default function CliPage() {
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Instalação</h2>
-        <CodeBlock language="bash" code={`npm install -g @codeforward/cli`} />
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Instalação
+        </h2>
+        <CodeBlock language="bash" code={"npm install -g @codeforward/cli"} />
         <p style={{ color: "var(--muted-foreground)" }}>
           Ou use sem instalar via <code style={{ fontFamily: "var(--font-mono)" }}>npx</code>:
         </p>
-        <CodeBlock language="bash" code={`npx @codeforward/cli add button`} />
+        <CodeBlock language="bash" code={"npx @codeforward/cli add button"} />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-6">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Comandos</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Comandos
+        </h2>
 
         {/* list */}
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <code
               className="text-sm font-medium px-2 py-1 rounded"
-              style={{ backgroundColor: "var(--color-navy-50)", color: "var(--primary)", fontFamily: "var(--font-mono)" }}
+              style={{
+                backgroundColor: "var(--color-navy-50)",
+                color: "var(--primary)",
+                fontFamily: "var(--font-mono)",
+              }}
             >
               codeward list
             </code>
@@ -49,10 +57,15 @@ export default function CliPage() {
           <p style={{ color: "var(--muted-foreground)" }}>
             Lista todos os componentes disponíveis na registry com uma breve descrição.
           </p>
-          <CodeBlock language="bash" code={`codeward list`} />
+          <CodeBlock language="bash" code={"codeward list"} />
           <div
             className="rounded-xl p-4 border font-mono text-sm"
-            style={{ backgroundColor: "#0D1929", borderColor: "var(--color-navy-800)", color: "#E2E8F0", fontFamily: "var(--font-mono)" }}
+            style={{
+              backgroundColor: "#0D1929",
+              borderColor: "var(--color-navy-800)",
+              color: "#E2E8F0",
+              fontFamily: "var(--font-mono)",
+            }}
           >
             <pre style={{ margin: 0 }}>{`Available components:
 
@@ -79,7 +92,11 @@ export default function CliPage() {
         <div className="space-y-3">
           <code
             className="text-sm font-medium px-2 py-1 rounded"
-            style={{ backgroundColor: "var(--color-navy-50)", color: "var(--primary)", fontFamily: "var(--font-mono)" }}
+            style={{
+              backgroundColor: "var(--color-navy-50)",
+              color: "var(--primary)",
+              fontFamily: "var(--font-mono)",
+            }}
           >
             codeward add {"<componente...>"}
           </code>
@@ -90,14 +107,21 @@ export default function CliPage() {
           </p>
           <CodeBlock
             language="bash"
-            code={`# um componente\ncodeward add button\n\n# múltiplos de uma vez\ncodeward add button badge input card avatar`}
+            code={
+              "# um componente\ncodeward add button\n\n# múltiplos de uma vez\ncodeward add button badge input card avatar"
+            }
           />
           <p style={{ color: "var(--muted-foreground)" }}>
             Após copiar, o CLI exibe as dependências de peer que o componente precisa:
           </p>
           <div
             className="rounded-xl p-4 border font-mono text-sm"
-            style={{ backgroundColor: "#0D1929", borderColor: "var(--color-navy-800)", color: "#E2E8F0", fontFamily: "var(--font-mono)" }}
+            style={{
+              backgroundColor: "#0D1929",
+              borderColor: "var(--color-navy-800)",
+              color: "#E2E8F0",
+              fontFamily: "var(--font-mono)",
+            }}
           >
             <pre style={{ margin: 0 }}>{`✓ button.tsx → src/components/ui/button.tsx
 
@@ -115,10 +139,12 @@ Peer dependencies needed:
         </h2>
         <div className="space-y-3" style={{ color: "var(--muted-foreground)" }}>
           <p>
-            O CLI lê a <strong style={{ color: "var(--foreground)", fontWeight: 500 }}>registry</strong>{" "}
-            embutida no pacote (em <code style={{ fontFamily: "var(--font-mono)" }}>dist/registry/</code>)
-            e copia os arquivos <code style={{ fontFamily: "var(--font-mono)" }}>.tsx</code> para o
-            seu projeto.
+            O CLI lê a{" "}
+            <strong style={{ color: "var(--foreground)", fontWeight: 500 }}>registry</strong>{" "}
+            embutida no pacote (em{" "}
+            <code style={{ fontFamily: "var(--font-mono)" }}>dist/registry/</code>) e copia os
+            arquivos <code style={{ fontFamily: "var(--font-mono)" }}>.tsx</code> para o seu
+            projeto.
           </p>
           <p>
             Você recebe o código-fonte completo. Isso significa que você pode{" "}
@@ -128,9 +154,10 @@ Peer dependencies needed:
             qualquer componente sem precisar fazer fork da biblioteca.
           </p>
           <p>
-            Os pacotes base (<code style={{ fontFamily: "var(--font-mono)" }}>@codeforward/tokens</code>,{" "}
-            <code style={{ fontFamily: "var(--font-mono)" }}>@codeforward/utils</code>) continuam como
-            dependências npm normais — você recebe atualizações via{" "}
+            Os pacotes base (
+            <code style={{ fontFamily: "var(--font-mono)" }}>@codeforward/tokens</code>,{" "}
+            <code style={{ fontFamily: "var(--font-mono)" }}>@codeforward/utils</code>) continuam
+            como dependências npm normais — você recebe atualizações via{" "}
             <code style={{ fontFamily: "var(--font-mono)" }}>npm update</code>.
           </p>
         </div>
@@ -172,11 +199,24 @@ Peer dependencies needed:
                 ["toast", "@radix-ui/react-toast, class-variance-authority"],
                 ["tooltip", "@radix-ui/react-tooltip"],
               ].map(([comp, deps], i) => (
-                <tr key={comp} style={{ backgroundColor: i % 2 === 0 ? "var(--background)" : "var(--muted)" }}>
+                <tr
+                  key={comp}
+                  style={{ backgroundColor: i % 2 === 0 ? "var(--background)" : "var(--muted)" }}
+                >
                   <td className="px-4 py-3 border-b" style={{ borderColor: "var(--border)" }}>
-                    <code style={{ fontFamily: "var(--font-mono)", color: "var(--primary)" }}>{comp}</code>
+                    <code style={{ fontFamily: "var(--font-mono)", color: "var(--primary)" }}>
+                      {comp}
+                    </code>
                   </td>
-                  <td className="px-4 py-3 border-b" style={{ borderColor: "var(--border)", color: "var(--muted-foreground)", fontFamily: "var(--font-mono)", fontSize: "0.8rem" }}>
+                  <td
+                    className="px-4 py-3 border-b"
+                    style={{
+                      borderColor: "var(--border)",
+                      color: "var(--muted-foreground)",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.8rem",
+                    }}
+                  >
                     {deps}
                   </td>
                 </tr>

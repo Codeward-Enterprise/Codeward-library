@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Hooks" };
 
@@ -105,7 +105,9 @@ function Dropdown() {
             >
               {signature}
             </code>
-            <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>{desc}</p>
+            <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+              {desc}
+            </p>
           </div>
           <CodeBlock language="tsx" code={code} />
           <hr style={{ borderColor: "var(--border)" }} />

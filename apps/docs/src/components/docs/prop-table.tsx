@@ -47,9 +47,7 @@ export function PropTable({ props }: PropTableProps) {
                   }}
                 >
                   {prop.name}
-                  {prop.required && (
-                    <span style={{ color: "var(--destructive)" }}> *</span>
-                  )}
+                  {prop.required && <span style={{ color: "var(--destructive)" }}> *</span>}
                 </code>
               </td>
               <td className="px-4 py-3 border-b" style={{ borderColor: "var(--border)" }}>
@@ -74,7 +72,11 @@ export function PropTable({ props }: PropTableProps) {
               </td>
               <td
                 className="px-4 py-3 border-b"
-                style={{ borderColor: "var(--border)", color: "var(--foreground)", fontFamily: "var(--font-sans)" }}
+                style={{
+                  borderColor: "var(--border)",
+                  color: "var(--foreground)",
+                  fontFamily: "var(--font-sans)",
+                }}
               >
                 {prop.description}
               </td>

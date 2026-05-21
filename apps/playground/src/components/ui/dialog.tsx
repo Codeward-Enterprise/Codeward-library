@@ -35,7 +35,12 @@ export interface DialogProps {
   children: ReactNode;
 }
 
-export function Dialog({ open: controlled, defaultOpen = false, onOpenChange, children }: DialogProps) {
+export function Dialog({
+  open: controlled,
+  defaultOpen = false,
+  onOpenChange,
+  children,
+}: DialogProps) {
   const [internal, setInternal] = useState(defaultOpen);
   const open = controlled ?? internal;
   const setOpen = useCallback(
@@ -58,7 +63,9 @@ export interface DialogTriggerProps extends HTMLAttributes<HTMLButtonElement> {
 export function DialogTrigger({ children, asChild, ...props }: DialogTriggerProps) {
   const { setOpen } = useContext(Ctx);
   if (asChild && isValidElement(children)) {
-    return cloneElement(children as ReactElement<{ onClick?: () => void }>, { onClick: () => setOpen(true) });
+    return cloneElement(children as ReactElement<{ onClick?: () => void }>, {
+      onClick: () => setOpen(true),
+    });
   }
   return (
     <button type="button" onClick={() => setOpen(true)} {...props}>
@@ -77,7 +84,9 @@ export interface DialogCloseProps extends HTMLAttributes<HTMLButtonElement> {
 export function DialogClose({ children, asChild, ...props }: DialogCloseProps) {
   const { setOpen } = useContext(Ctx);
   if (asChild && isValidElement(children)) {
-    return cloneElement(children as ReactElement<{ onClick?: () => void }>, { onClick: () => setOpen(false) });
+    return cloneElement(children as ReactElement<{ onClick?: () => void }>, {
+      onClick: () => setOpen(false),
+    });
   }
   return (
     <button type="button" onClick={() => setOpen(false)} {...props}>
@@ -104,13 +113,17 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       } else {
         document.body.style.overflow = "";
       }
-      return () => { document.body.style.overflow = ""; };
+      return () => {
+        document.body.style.overflow = "";
+      };
     }, [open]);
 
     // Esc to close
     useEffect(() => {
       if (!open) return;
-      const handler = (e: globalThis.KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+      const handler = (e: globalThis.KeyboardEvent) => {
+        if (e.key === "Escape") setOpen(false);
+      };
       document.addEventListener("keydown", handler);
       return () => document.removeEventListener("keydown", handler);
     }, [open, setOpen]);
@@ -155,7 +168,12 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             aria-label="Fechar"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path
+                d="M12 4L4 12M4 4l8 8"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
             </svg>
           </button>
         </div>
@@ -204,14 +222,15 @@ DialogTitle.displayName = "DialogTitle";
 
 // ── Description ───────────────────────────────────────────────────────────────
 
-export const DialogDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => (
-    <p
-      ref={ref}
-      className={cn("text-sm leading-relaxed", className)}
-      style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-sans)" }}
-      {...props}
-    />
-  ),
-);
+export const DialogDescription = forwardRef<
+  HTMLParagraphElement,
+  HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn("text-sm leading-relaxed", className)}
+    style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-sans)" }}
+    {...props}
+  />
+));
 DialogDescription.displayName = "DialogDescription";

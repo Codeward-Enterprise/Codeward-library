@@ -1,9 +1,13 @@
-import type { Metadata } from "next";
 import { colors } from "@codeforward/tokens";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Design Tokens" };
 
-function ColorSwatch({ label, hex, tag }: { label: string; hex: string; tag?: string | undefined }) {
+function ColorSwatch({
+  label,
+  hex,
+  tag,
+}: { label: string; hex: string; tag?: string | undefined }) {
   return (
     <div className="space-y-2">
       <div
@@ -11,7 +15,10 @@ function ColorSwatch({ label, hex, tag }: { label: string; hex: string; tag?: st
         style={{ backgroundColor: hex, borderColor: "rgba(0,0,0,0.08)" }}
       />
       <div>
-        <p className="text-xs font-medium" style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}>
+        <p
+          className="text-xs font-medium"
+          style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}
+        >
           {label}
           {tag && (
             <span
@@ -22,7 +29,10 @@ function ColorSwatch({ label, hex, tag }: { label: string; hex: string; tag?: st
             </span>
           )}
         </p>
-        <p className="text-[11px] font-mono" style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}>
+        <p
+          className="text-[11px] font-mono"
+          style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
+        >
           {hex}
         </p>
       </div>
@@ -33,7 +43,10 @@ function ColorSwatch({ label, hex, tag }: { label: string; hex: string; tag?: st
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="space-y-4">
-      <h2 className="text-xl font-medium" style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}>
+      <h2
+        className="text-xl font-medium"
+        style={{ color: "var(--foreground)", fontFamily: "var(--font-sans)" }}
+      >
         {title}
       </h2>
       {children}
@@ -67,7 +80,10 @@ export default function TokensPage() {
           {/* Navy */}
           <div>
             <div className="flex items-baseline gap-2 mb-4">
-              <p className="text-xs font-medium uppercase tracking-widest" style={{ color: "var(--muted-foreground)" }}>
+              <p
+                className="text-xs font-medium uppercase tracking-widest"
+                style={{ color: "var(--muted-foreground)" }}
+              >
                 Navy
               </p>
               <span className="text-xs" style={{ color: "var(--muted-foreground)" }}>
@@ -89,7 +105,10 @@ export default function TokensPage() {
           {/* Mint */}
           <div>
             <div className="flex items-baseline gap-2 mb-4">
-              <p className="text-xs font-medium uppercase tracking-widest" style={{ color: "var(--muted-foreground)" }}>
+              <p
+                className="text-xs font-medium uppercase tracking-widest"
+                style={{ color: "var(--muted-foreground)" }}
+              >
                 Mint
               </p>
               <span className="text-xs" style={{ color: "var(--muted-foreground)" }}>
@@ -109,9 +128,17 @@ export default function TokensPage() {
           </div>
         </div>
 
-        <div className="rounded-xl p-4 border" style={{ backgroundColor: "var(--muted)", borderColor: "var(--border)" }}>
-          <p className="text-sm font-medium mb-3" style={{ color: "var(--foreground)" }}>Uso via JavaScript</p>
-          <pre className="text-sm overflow-x-auto" style={{ fontFamily: "var(--font-mono)", color: "var(--foreground)", margin: 0 }}>
+        <div
+          className="rounded-xl p-4 border"
+          style={{ backgroundColor: "var(--muted)", borderColor: "var(--border)" }}
+        >
+          <p className="text-sm font-medium mb-3" style={{ color: "var(--foreground)" }}>
+            Uso via JavaScript
+          </p>
+          <pre
+            className="text-sm overflow-x-auto"
+            style={{ fontFamily: "var(--font-mono)", color: "var(--foreground)", margin: 0 }}
+          >
             <code>{`import { colors } from "@codeforward/tokens";
 
 colors.navy[700]  // "#0A2540"
@@ -119,9 +146,17 @@ colors.mint[500]  // "#00D4B8"`}</code>
           </pre>
         </div>
 
-        <div className="rounded-xl p-4 border" style={{ backgroundColor: "var(--muted)", borderColor: "var(--border)" }}>
-          <p className="text-sm font-medium mb-3" style={{ color: "var(--foreground)" }}>Uso via CSS Variables</p>
-          <pre className="text-sm overflow-x-auto" style={{ fontFamily: "var(--font-mono)", color: "var(--foreground)", margin: 0 }}>
+        <div
+          className="rounded-xl p-4 border"
+          style={{ backgroundColor: "var(--muted)", borderColor: "var(--border)" }}
+        >
+          <p className="text-sm font-medium mb-3" style={{ color: "var(--foreground)" }}>
+            Uso via CSS Variables
+          </p>
+          <pre
+            className="text-sm overflow-x-auto"
+            style={{ fontFamily: "var(--font-mono)", color: "var(--foreground)", margin: 0 }}
+          >
             <code>{`/* após importar @codeforward/tokens/styles */
 var(--primary)          /* Navy 700 — #0A2540 */
 var(--cta)              /* Mint 500 — #00D4B8 */
@@ -144,14 +179,48 @@ var(--ring)             /* Mint 500 (focus) */`}</code>
           style={{ backgroundColor: "var(--background)", borderColor: "var(--border)" }}
         >
           {[
-            { label: "Display · 48px · weight 500", size: "48px", weight: 500, text: "Construímos para escalar", font: "sans" },
-            { label: "Heading · 32px · weight 500", size: "32px", weight: 500, text: "Entregamos o MVP", font: "sans" },
-            { label: "Body · 16px · weight 400", size: "16px", weight: 400, text: "Code review em todo PR. Status diário. Você sabe o que acontece em cada sprint.", font: "sans" },
-            { label: "Caption · 14px · weight 400", size: "14px", weight: 400, text: "Atualizado há 2 horas · Sprint 14", font: "sans", opacity: 0.5 },
-            { label: "Mono · JetBrains Mono · 14px", size: "14px", weight: 400, text: "pnpm add @codeforward/tokens", font: "mono" },
+            {
+              label: "Display · 48px · weight 500",
+              size: "48px",
+              weight: 500,
+              text: "Construímos para escalar",
+              font: "sans",
+            },
+            {
+              label: "Heading · 32px · weight 500",
+              size: "32px",
+              weight: 500,
+              text: "Entregamos o MVP",
+              font: "sans",
+            },
+            {
+              label: "Body · 16px · weight 400",
+              size: "16px",
+              weight: 400,
+              text: "Code review em todo PR. Status diário. Você sabe o que acontece em cada sprint.",
+              font: "sans",
+            },
+            {
+              label: "Caption · 14px · weight 400",
+              size: "14px",
+              weight: 400,
+              text: "Atualizado há 2 horas · Sprint 14",
+              font: "sans",
+              opacity: 0.5,
+            },
+            {
+              label: "Mono · JetBrains Mono · 14px",
+              size: "14px",
+              weight: 400,
+              text: "pnpm add @codeforward/tokens",
+              font: "mono",
+            },
           ].map(({ label, size, weight, text, font, opacity }) => (
             <div key={label} className="space-y-1">
-              <p className="text-xs uppercase tracking-widest" style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}>
+              <p
+                className="text-xs uppercase tracking-widest"
+                style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
+              >
                 {label}
               </p>
               <p
@@ -169,9 +238,17 @@ var(--ring)             /* Mint 500 (focus) */`}</code>
           ))}
         </div>
 
-        <div className="rounded-xl p-4 border" style={{ backgroundColor: "var(--muted)", borderColor: "var(--border)" }}>
-          <p className="text-sm font-medium mb-3" style={{ color: "var(--foreground)" }}>Importar fontes (Next.js)</p>
-          <pre className="text-sm overflow-x-auto" style={{ fontFamily: "var(--font-mono)", color: "var(--foreground)", margin: 0 }}>
+        <div
+          className="rounded-xl p-4 border"
+          style={{ backgroundColor: "var(--muted)", borderColor: "var(--border)" }}
+        >
+          <p className="text-sm font-medium mb-3" style={{ color: "var(--foreground)" }}>
+            Importar fontes (Next.js)
+          </p>
+          <pre
+            className="text-sm overflow-x-auto"
+            style={{ fontFamily: "var(--font-mono)", color: "var(--foreground)", margin: 0 }}
+          >
             <code>{`import { Inter, JetBrains_Mono } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-inter" });
@@ -193,11 +270,22 @@ const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variab
         >
           <div className="space-y-2">
             {[
-              [1, "4px"], [2, "8px"], [3, "12px"], [4, "16px"], [5, "20px"],
-              [6, "24px"], [8, "32px"], [10, "40px"], [12, "48px"], [16, "64px"],
+              [1, "4px"],
+              [2, "8px"],
+              [3, "12px"],
+              [4, "16px"],
+              [5, "20px"],
+              [6, "24px"],
+              [8, "32px"],
+              [10, "40px"],
+              [12, "48px"],
+              [16, "64px"],
             ].map(([key, value]) => (
               <div key={key} className="flex items-center gap-4">
-                <code className="text-xs w-8 text-right shrink-0" style={{ fontFamily: "var(--font-mono)", color: "var(--muted-foreground)" }}>
+                <code
+                  className="text-xs w-8 text-right shrink-0"
+                  style={{ fontFamily: "var(--font-mono)", color: "var(--muted-foreground)" }}
+                >
                   {key}
                 </code>
                 <div
@@ -210,7 +298,10 @@ const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variab
                     flexShrink: 0,
                   }}
                 />
-                <span className="text-xs" style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}>
+                <span
+                  className="text-xs"
+                  style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
+                >
                   {value}
                 </span>
               </div>
@@ -229,8 +320,15 @@ const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variab
         >
           <div className="flex flex-wrap gap-6">
             {[
-              ["none", "0px"], ["sm", "2px"], ["DEFAULT", "4px"], ["md", "6px"],
-              ["lg", "8px"], ["xl", "12px"], ["2xl", "16px"], ["3xl", "24px"], ["full", "9999px"],
+              ["none", "0px"],
+              ["sm", "2px"],
+              ["DEFAULT", "4px"],
+              ["md", "6px"],
+              ["lg", "8px"],
+              ["xl", "12px"],
+              ["2xl", "16px"],
+              ["3xl", "24px"],
+              ["full", "9999px"],
             ].map(([name, value]) => (
               <div key={name} className="flex flex-col items-center gap-2">
                 <div
@@ -242,10 +340,16 @@ const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variab
                   }}
                 />
                 <div className="text-center">
-                  <p className="text-xs font-medium" style={{ color: "var(--foreground)", fontFamily: "var(--font-mono)" }}>
+                  <p
+                    className="text-xs font-medium"
+                    style={{ color: "var(--foreground)", fontFamily: "var(--font-mono)" }}
+                  >
                     {name}
                   </p>
-                  <p className="text-[11px]" style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}>
+                  <p
+                    className="text-[11px]"
+                    style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
+                  >
                     {value}
                   </p>
                 </div>
@@ -277,7 +381,10 @@ const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variab
                   className="w-16 h-16 rounded-xl bg-white"
                   style={{ boxShadow: shadow as string }}
                 />
-                <p className="text-xs font-medium" style={{ color: "var(--foreground)", fontFamily: "var(--font-mono)" }}>
+                <p
+                  className="text-xs font-medium"
+                  style={{ color: "var(--foreground)", fontFamily: "var(--font-mono)" }}
+                >
                   {name}
                 </p>
               </div>

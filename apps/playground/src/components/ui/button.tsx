@@ -1,7 +1,13 @@
 "use client";
 
 import { cn } from "@codeforward/utils";
-import { type ButtonHTMLAttributes, type ReactElement, cloneElement, forwardRef, isValidElement } from "react";
+import {
+  type ButtonHTMLAttributes,
+  type ReactElement,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+} from "react";
 
 const variantClasses: Record<string, string> = {
   primary: [

@@ -4,10 +4,7 @@ import { cn } from "@codeforward/utils";
 import {
   type HTMLAttributes,
   type ReactNode,
-  createContext,
   forwardRef,
-  useCallback,
-  useContext,
   useEffect,
   useRef,
   useState,
@@ -27,27 +24,72 @@ const variantClasses: Record<ToastVariant, string> = {
 
 const iconMap: Record<ToastVariant, ReactNode> = {
   default: (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ color: "#00D4B8", flexShrink: 0, marginTop: "1px" }}>
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+      style={{ color: "#00D4B8", flexShrink: 0, marginTop: "1px" }}
+    >
       <circle cx="9" cy="9" r="8" stroke="currentColor" strokeWidth="1.5" />
       <path d="M9 5v4M9 12.5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   ),
   success: (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ color: "#22C55E", flexShrink: 0, marginTop: "1px" }}>
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+      style={{ color: "#22C55E", flexShrink: 0, marginTop: "1px" }}
+    >
       <circle cx="9" cy="9" r="8" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M5.5 9l3 3 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M5.5 9l3 3 4-4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   ),
   warning: (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ color: "#F59E0B", flexShrink: 0, marginTop: "1px" }}>
-      <path d="M9 2L1.5 15h15L9 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+      style={{ color: "#F59E0B", flexShrink: 0, marginTop: "1px" }}
+    >
+      <path
+        d="M9 2L1.5 15h15L9 2z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       <path d="M9 8v3M9 12.5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   ),
   destructive: (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style={{ color: "#EF4444", flexShrink: 0, marginTop: "1px" }}>
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+      style={{ color: "#EF4444", flexShrink: 0, marginTop: "1px" }}
+    >
       <circle cx="9" cy="9" r="8" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M11.5 6.5l-5 5M6.5 6.5l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path
+        d="M11.5 6.5l-5 5M6.5 6.5l5 5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   ),
 };
@@ -62,7 +104,10 @@ export const ToastViewport = forwardRef<HTMLOListElement, HTMLAttributes<HTMLOLi
   ({ className, ...props }, ref) => (
     <ol
       ref={ref}
-      className={cn("fixed bottom-4 right-4 z-[100] flex flex-col gap-2 w-full max-w-sm outline-none", className)}
+      className={cn(
+        "fixed bottom-4 right-4 z-[100] flex flex-col gap-2 w-full max-w-sm outline-none",
+        className,
+      )}
       {...props}
     />
   ),
@@ -79,11 +124,24 @@ export interface ToastProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Toast = forwardRef<HTMLDivElement, ToastProps>(
-  ({ className, variant = "default", open = true, onOpenChange, duration = 5000, children, ...props }, ref) => {
+  (
+    {
+      className,
+      variant = "default",
+      open = true,
+      onOpenChange,
+      duration = 5000,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const [visible, setVisible] = useState(open);
     const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-    useEffect(() => { setVisible(open); }, [open]);
+    useEffect(() => {
+      setVisible(open);
+    }, [open]);
 
     useEffect(() => {
       if (visible && duration > 0) {
@@ -118,7 +176,10 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
         <div className="flex-1 min-w-0">{children}</div>
         <button
           type="button"
-          onClick={() => { setVisible(false); onOpenChange?.(false); }}
+          onClick={() => {
+            setVisible(false);
+            onOpenChange?.(false);
+          }}
           className="shrink-0 rounded-md p-1 opacity-50 hover:opacity-100 transition-opacity duration-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
           aria-label="Fechar"
         >

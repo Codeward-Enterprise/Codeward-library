@@ -29,8 +29,13 @@ interface SelectCtx {
 }
 
 const Ctx = createContext<SelectCtx>({
-  value: "", open: false, disabled: false, listboxId: "",
-  select: () => {}, setOpen: () => {}, selectedLabel: "",
+  value: "",
+  open: false,
+  disabled: false,
+  listboxId: "",
+  select: () => {},
+  setOpen: () => {},
+  selectedLabel: "",
 });
 
 // ── Root ──────────────────────────────────────────────────────────────────────
@@ -44,7 +49,14 @@ export interface SelectProps {
   children: ReactNode;
 }
 
-export function Select({ value: controlled, defaultValue = "", onValueChange, disabled = false, open: controlledOpen, children }: SelectProps) {
+export function Select({
+  value: controlled,
+  defaultValue = "",
+  onValueChange,
+  disabled = false,
+  open: controlledOpen,
+  children,
+}: SelectProps) {
   const [internal, setInternal] = useState(defaultValue);
   const [selectedLabel, setSelectedLabel] = useState("");
   const [openInternal, setOpenInternal] = useState(false);
@@ -52,9 +64,12 @@ export function Select({ value: controlled, defaultValue = "", onValueChange, di
   const value = controlled ?? internal;
   const listboxId = useId();
 
-  const setOpen = useCallback((v: boolean) => {
-    if (controlledOpen === undefined) setOpenInternal(v);
-  }, [controlledOpen]);
+  const setOpen = useCallback(
+    (v: boolean) => {
+      if (controlledOpen === undefined) setOpenInternal(v);
+    },
+    [controlledOpen],
+  );
 
   const select = useCallback(
     (v: string, label: string) => {
@@ -111,14 +126,24 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<
       >
         {children}
         <svg
-          width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          aria-hidden="true"
           className="shrink-0 transition-transform duration-150"
           style={{
             color: "var(--muted-foreground)",
             transform: open ? "rotate(180deg)" : "rotate(0deg)",
           }}
         >
-          <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M3 5l4 4 4-4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </button>
     );
@@ -189,7 +214,13 @@ export interface SelectItemProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-export function SelectItem({ value, disabled = false, className, children, ...props }: SelectItemProps) {
+export function SelectItem({
+  value,
+  disabled = false,
+  className,
+  children,
+  ...props
+}: SelectItemProps) {
   const { value: selected, select } = useContext(Ctx);
   const isSelected = selected === value;
   const labelText = typeof children === "string" ? children : "";
@@ -224,7 +255,13 @@ export function SelectItem({ value, disabled = false, className, children, ...pr
       <span className="flex-1">{children}</span>
       {isSelected && (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-          <path d="M2 7l4 4 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M2 7l4 4 6-6"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       )}
     </div>

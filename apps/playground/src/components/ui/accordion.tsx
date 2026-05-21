@@ -55,9 +55,7 @@ export function Accordion({
   const toggle = (item: string) => {
     let next: string[];
     if (type === "multiple") {
-      next = openItems.includes(item)
-        ? openItems.filter((v) => v !== item)
-        : [...openItems, item];
+      next = openItems.includes(item) ? openItems.filter((v) => v !== item) : [...openItems, item];
     } else {
       next = openItems.includes(item) && collapsible ? [] : [item];
     }
@@ -126,10 +124,22 @@ export function AccordionTrigger({ className, children, ...props }: AccordionTri
       ? Array.from(root.querySelectorAll<HTMLElement>("[data-accordion-trigger]"))
       : [];
     const idx = triggers.indexOf(ref.current!);
-    if (e.key === "ArrowDown") { e.preventDefault(); triggers[idx + 1]?.focus(); }
-    if (e.key === "ArrowUp") { e.preventDefault(); triggers[idx - 1]?.focus(); }
-    if (e.key === "Home") { e.preventDefault(); triggers[0]?.focus(); }
-    if (e.key === "End") { e.preventDefault(); triggers[triggers.length - 1]?.focus(); }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      triggers[idx + 1]?.focus();
+    }
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      triggers[idx - 1]?.focus();
+    }
+    if (e.key === "Home") {
+      e.preventDefault();
+      triggers[0]?.focus();
+    }
+    if (e.key === "End") {
+      e.preventDefault();
+      triggers[triggers.length - 1]?.focus();
+    }
   };
 
   return (
@@ -156,7 +166,10 @@ export function AccordionTrigger({ className, children, ...props }: AccordionTri
       >
         {children}
         <svg
-          width="16" height="16" viewBox="0 0 16 16" fill="none"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
           aria-hidden="true"
           className="shrink-0 transition-transform duration-200"
           style={{
@@ -164,7 +177,13 @@ export function AccordionTrigger({ className, children, ...props }: AccordionTri
             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
           }}
         >
-          <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M4 6l4 4 4-4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </button>
     </h3>

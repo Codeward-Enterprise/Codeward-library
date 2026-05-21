@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Tabs" };
 
@@ -8,7 +8,10 @@ export default function TabsPage() {
   return (
     <div className="space-y-10" style={{ fontFamily: "var(--font-sans)" }}>
       <div className="space-y-2">
-        <p className="text-sm" style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}>
+        <p
+          className="text-sm"
+          style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
+        >
           codeward add tabs
         </p>
         <h1 className="text-4xl font-medium tracking-tight" style={{ color: "var(--foreground)" }}>
@@ -23,7 +26,9 @@ export default function TabsPage() {
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Instalação</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Instalação
+        </h2>
         <CodeBlock language="bash" code="codeward add tabs" />
         <CodeBlock language="bash" code="npm install @radix-ui/react-tabs" />
       </section>
@@ -31,8 +36,13 @@ export default function TabsPage() {
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Exemplo</h2>
-        <div className="rounded-xl border p-6" style={{ backgroundColor: "var(--background)", borderColor: "var(--border)" }}>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Exemplo
+        </h2>
+        <div
+          className="rounded-xl border p-6"
+          style={{ backgroundColor: "var(--background)", borderColor: "var(--border)" }}
+        >
           <Tabs defaultValue="overview">
             <TabsList>
               <TabsTrigger value="overview">Visão geral</TabsTrigger>

@@ -1,15 +1,30 @@
-import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
-import { PropTable } from "@/components/docs/prop-table";
 import { Preview } from "@/components/docs/preview";
+import { PropTable } from "@/components/docs/prop-table";
 import { Button } from "@/components/ui/button";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Button" };
 
 const props = [
-  { name: "variant", type: '"primary" | "cta" | "secondary" | "outline" | "ghost" | "link" | "destructive"', default: '"primary"', description: "Estilo visual do botão" },
-  { name: "size", type: '"xs" | "sm" | "md" | "lg" | "xl" | "icon" | "icon-sm" | "icon-lg"', default: '"md"', description: "Tamanho do botão" },
-  { name: "asChild", type: "boolean", default: "false", description: "Renderiza como elemento filho usando Radix Slot" },
+  {
+    name: "variant",
+    type: '"primary" | "cta" | "secondary" | "outline" | "ghost" | "link" | "destructive"',
+    default: '"primary"',
+    description: "Estilo visual do botão",
+  },
+  {
+    name: "size",
+    type: '"xs" | "sm" | "md" | "lg" | "xl" | "icon" | "icon-sm" | "icon-lg"',
+    default: '"md"',
+    description: "Tamanho do botão",
+  },
+  {
+    name: "asChild",
+    type: "boolean",
+    default: "false",
+    description: "Renderiza como elemento filho usando Radix Slot",
+  },
   { name: "disabled", type: "boolean", default: "false", description: "Desabilita o botão" },
   { name: "className", type: "string", description: "Classes CSS adicionais" },
 ];
@@ -18,7 +33,10 @@ export default function ButtonPage() {
   return (
     <div className="space-y-10" style={{ fontFamily: "var(--font-sans)" }}>
       <div className="space-y-2">
-        <p className="text-sm" style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}>
+        <p
+          className="text-sm"
+          style={{ color: "var(--muted-foreground)", fontFamily: "var(--font-mono)" }}
+        >
           codeward add button
         </p>
         <h1 className="text-4xl font-medium tracking-tight" style={{ color: "var(--foreground)" }}>
@@ -34,15 +52,22 @@ export default function ButtonPage() {
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Instalação</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Instalação
+        </h2>
         <CodeBlock language="bash" code="codeward add button" />
-        <CodeBlock language="bash" code="npm install @radix-ui/react-slot class-variance-authority" />
+        <CodeBlock
+          language="bash"
+          code="npm install @radix-ui/react-slot class-variance-authority"
+        />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Variantes</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Variantes
+        </h2>
         <Preview>
           <Button variant="primary">Primary</Button>
           <Button variant="cta">CTA</Button>
@@ -65,7 +90,9 @@ export default function ButtonPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Tamanhos</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Tamanhos
+        </h2>
         <Preview>
           <Button size="xs">XSmall</Button>
           <Button size="sm">Small</Button>
@@ -86,16 +113,24 @@ export default function ButtonPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Em fundo Navy</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Em fundo Navy
+        </h2>
         <Preview dark>
           <Button variant="cta">Iniciar projeto</Button>
-          <Button variant="outline" className="!border-[rgba(255,255,255,0.2)] !text-white">Saber mais</Button>
-          <Button variant="ghost" className="!text-[var(--color-navy-300)]">Cancelar</Button>
+          <Button variant="outline" className="!border-[rgba(255,255,255,0.2)] !text-white">
+            Saber mais
+          </Button>
+          <Button variant="ghost" className="!text-[var(--color-navy-300)]">
+            Cancelar
+          </Button>
         </Preview>
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>asChild</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          asChild
+        </h2>
         <p style={{ color: "var(--muted-foreground)" }}>
           Use <code style={{ fontFamily: "var(--font-mono)" }}>asChild</code> para renderizar o
           botão como um link ou qualquer outro elemento mantendo todos os estilos.
@@ -113,7 +148,9 @@ export default function ButtonPage() {
       <hr style={{ borderColor: "var(--border)" }} />
 
       <section className="space-y-4">
-        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>Props</h2>
+        <h2 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
+          Props
+        </h2>
         <PropTable props={props} />
       </section>
     </div>

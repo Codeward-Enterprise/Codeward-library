@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Getting Started" };
 
@@ -60,12 +60,19 @@ export default function GettingStartedPage() {
         </p>
         <CodeBlock
           language="bash"
-          code={`npm install @codeforward/tokens @codeforward/utils @codeforward/hooks @codeforward/icons`}
+          code={
+            "npm install @codeforward/tokens @codeforward/utils @codeforward/hooks @codeforward/icons"
+          }
         />
         <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
           Ou com pnpm / yarn:
         </p>
-        <CodeBlock language="bash" code={`pnpm add @codeforward/tokens @codeforward/utils @codeforward/hooks @codeforward/icons`} />
+        <CodeBlock
+          language="bash"
+          code={
+            "pnpm add @codeforward/tokens @codeforward/utils @codeforward/hooks @codeforward/icons"
+          }
+        />
       </section>
 
       {/* Step 2 */}
@@ -127,7 +134,12 @@ export default function GettingStartedPage() {
           adicionar componentes ao seu projeto. Instale globalmente ou use via{" "}
           <code style={{ fontFamily: "var(--font-mono)" }}>npx</code>.
         </p>
-        <CodeBlock language="bash" code={`npm install -g @codeforward/cli\n# ou sem instalar:\nnpx @codeforward/cli add button`} />
+        <CodeBlock
+          language="bash"
+          code={
+            "npm install -g @codeforward/cli\n# ou sem instalar:\nnpx @codeforward/cli add button"
+          }
+        />
       </section>
 
       {/* Step 4 */}
@@ -150,14 +162,18 @@ export default function GettingStartedPage() {
         </p>
         <CodeBlock
           language="bash"
-          code={`# listar componentes disponíveis\ncodeward list\n\n# adicionar um componente\ncodeward add button\n\n# adicionar múltiplos\ncodeward add button badge input card`}
+          code={
+            "# listar componentes disponíveis\ncodeward list\n\n# adicionar um componente\ncodeward add button\n\n# adicionar múltiplos\ncodeward add button badge input card"
+          }
         />
         <p style={{ color: "var(--muted-foreground)" }}>
           Após adicionar, o CLI mostra as dependências de peer que precisam ser instaladas:
         </p>
         <CodeBlock
           language="bash"
-          code={`✓ button.tsx copiado para src/components/ui/button.tsx\n\nDependências necessárias:\nnpm install @radix-ui/react-slot class-variance-authority`}
+          code={
+            "✓ button.tsx copiado para src/components/ui/button.tsx\n\nDependências necessárias:\nnpm install @radix-ui/react-slot class-variance-authority"
+          }
         />
       </section>
 
@@ -216,21 +232,41 @@ export default function Page() {
               {[
                 ["@codeforward/tokens", "npm", "Tokens de cor, tipografia, espaçamento e sombras"],
                 ["@codeforward/utils", "npm", "cn(), formatadores e validadores brasileiros"],
-                ["@codeforward/hooks", "npm", "useDebounce, useLocalStorage, useMediaQuery, useClickOutside"],
+                [
+                  "@codeforward/hooks",
+                  "npm",
+                  "useDebounce, useLocalStorage, useMediaQuery, useClickOutside",
+                ],
                 ["@codeforward/icons", "npm", "CodewardMark e CodewardIcon SVG"],
                 ["@codeforward/cli", "npm (global)", "CLI para adicionar componentes ao projeto"],
-                ["Componentes", "via CLI (código-fonte)", "Copiados para src/components/ui/ — você controla"],
+                [
+                  "Componentes",
+                  "via CLI (código-fonte)",
+                  "Copiados para src/components/ui/ — você controla",
+                ],
               ].map(([pkg, dist, desc]) => (
                 <tr key={pkg as string}>
                   <td className="px-4 py-3 border-b" style={{ borderColor: "var(--border)" }}>
-                    <code style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--primary)" }}>
+                    <code
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.8rem",
+                        color: "var(--primary)",
+                      }}
+                    >
                       {pkg}
                     </code>
                   </td>
-                  <td className="px-4 py-3 border-b" style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}>
+                  <td
+                    className="px-4 py-3 border-b"
+                    style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+                  >
                     {dist}
                   </td>
-                  <td className="px-4 py-3 border-b" style={{ borderColor: "var(--border)", color: "var(--foreground)" }}>
+                  <td
+                    className="px-4 py-3 border-b"
+                    style={{ borderColor: "var(--border)", color: "var(--foreground)" }}
+                  >
                     {desc}
                   </td>
                 </tr>
